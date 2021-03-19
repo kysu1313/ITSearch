@@ -1,0 +1,30 @@
+﻿@model ITSearch.Models.Search
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to IT-Search</h1>
+    <h3>Get Answers Fast!</h3>
+    <div class="jumbotron">
+        <h4>Search for keywords or products</h4>
+
+        <form asp-controller="Services" asp-action="search" method="post">
+            <div class="input-group mb-3">
+                <input asp-for="SearchText" asp-action="search" asp-controller="Services"
+                       type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="search here:">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
+
+        <br />
+        <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Login Here</a>
+        <a class="btn btn-success" asp-area="Identity" asp-page="/Account/Register">Register Here</a>
+    </div>
+</div>
+
+

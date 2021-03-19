@@ -1,0 +1,105 @@
+﻿@using ITSearch.Models
+@model ITSearch.Models.ViewModels.ServiceViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Services" asp-action="InnerSearch" method="post">
+    <div class="input-group mb-3">
+        <input id="searchTerm" asp-for="NewSearch.SearchText" asp-action="InnerSearch" asp-controller="Services"
+               type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="search here:">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+
+@*<button asp-action="ParseJson" asp-controller="Services" type="submit">Parse</button>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Service.ServiceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service.ServicePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service.AdditionalInfo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Services)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceName)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.ServicePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdditionalInfo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ServiceId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ServiceId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ServiceId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#searchTerm').autocomplete({
+                source: '/api/servicesapi/search'
+            });
+        });
+    </script>
+}
+
+
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $("#search").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/Service/AutoComplete/',
+                        data: { "prefix": request.term },
+                        type: "POST",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return item;
+                            }))
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                select: function (e, i) {
+                    $("#search").val(i.item.label);
+                    log("Selected: " + i.item.label);
+                },
+                minLength: 1
+            });
+        });
+    </script>*@

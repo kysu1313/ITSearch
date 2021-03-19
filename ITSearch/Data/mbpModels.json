@@ -1,0 +1,444 @@
+[
+  {
+    "model": "MacBook Pro (Retina, 13-inch, Early 2015)",
+    "model_identifier": "MacbookPro12,1",
+    "model_numbers": [
+      "MF839**/A",
+      "MF840**/A",
+      "MF841**/A",
+      "MF843**/A"
+    ],
+    "configurations": [
+      "13.3\"/2.7 i5/8GB/128GB-Flash",
+      "13.3\"/2.7 i5/8GB/256GB-Flash",
+      "13.3\"/2.9 i5/8GB/512GB-Flash",
+      "13.3\"/3.1 i5/16GB/512GB-Flash"
+    ],
+    "inch": 13
+  },
+  {
+    "model": "MacBook Pro (Retina, 13-inch, Mid 2014)",
+    "model_identifier": "MacBookPro11,1",
+    "model_numbers": [
+      "MGX72xx/A",
+      "MGX82xx/A",
+      "MGX92xx/A"
+    ],
+    "configurations": [
+      "13.3”/2.6 i5/8GB/128GB-Flash",
+      "13.3”/2.6 i5/8GB/256GB-Flash",
+      "13.3”/2.8 i5/8GB/512GB-Flash"
+    ],
+    "inch": 13
+  },
+  {
+    "model": "MacBook Pro (Retina, 13-inch, Late 2013)",
+    "model_identifier": "MacBookPro11,1",
+    "model_numbers": [
+      "ME864xx/A",
+      "ME865xx/A",
+      "ME866xx/A"
+    ],
+    "configurations": [
+      "13.3\"/2.4 i5/4GB/128GB-Flash",
+      "13.3\"/2.4 i5/8GB/256GB-Flash",
+      "13.3\"/2.6 i5/8GB/512GB-Flash"
+    ],
+    "inch": 13
+  },
+  {
+    "model": "MacBook Pro (Retina, 13-inch, Early 2013)",
+    "model_identifier": "MacBookPro10,2",
+    "model_numbers": [
+      "MD212xx/A",
+      "ME662xx/A"
+    ],
+    "configurations": [
+      "13.3\"/2.5 i5/8GB/128GB-Flash",
+      "13.3\"/2.6 i5/8GB/256GB-Flash"
+    ],
+    "inch": 13
+  },
+  {
+    "model": "MacBook Pro (Retina, 13-inch, Late 2012)",
+    "model_identifier": "MacBookPro10,2",
+    "model_numbers": [
+      "MD212",
+      "MD213"
+    ],
+    "configurations": [
+      "13.3\"/2.5 i5/8GB/128GB-Flash",
+      "13.3\"/2.5 i5/8GB/256GB-Flash"
+    ],
+    "inch": 13
+  },
+  {
+    "model": "MacBook Pro (13-inch, Mid 2012)",
+    "model_identifier": "MacBookPro9,2",
+    "model_numbers": [
+      "MD101xx/A",
+      "MD102xx/A"
+    ],
+    "configurations": [
+      "13.3\"/2.5 i5/2x2GB/500-5400",
+      "13.3\"/2.5 i5/2x2GB/500-5400"
+    ],
+    "inch": 13
+  },
+  {
+    "model": "MacBook Pro (13-inch, Late 2011)",
+    "model_identifier": "MacBookPro8,1",
+    "model_numbers": [
+      "MD314xx/A",
+      "MD313xx/A"
+    ],
+    "configurations": [
+      "13.3\"/2.8 i7/2x2GB/750-5400",
+      "13.3\"/2.4 i5/2x2GB/500-5400"
+    ],
+    "inch": 13
+  },
+  {
+    "model": "MacBook Pro (13-inch, Early 2011)",
+    "model_identifier": "MacBookPro8,1",
+    "model_numbers": [
+      "MC724xx/A",
+      "MC700xx/A"
+    ],
+    "configurations": [
+      "13.3\"/2.7 i7/2x2GB/500-5400",
+      "13.3\"/2.3 i5/2x2GB/320-5400"
+    ],
+    "inch": 13
+  },
+  {
+    "model": "MacBook Pro (13-inch, Mid 2010)",
+    "model_identifier": "MacBookPro7,1",
+    "model_numbers": [
+      "MC375xx/A",
+      "MC374xx/A"
+    ],
+    "configurations": [
+      "13.3\"/2.66/2x2GB/320-5400",
+      "13.3\"/2.4/2x2GB/250-5400"
+    ],
+    "inch": 13
+  },
+  {
+    "model": "MacBook Pro (13-inch, Mid 2009)",
+    "model_identifier": "MacBookPro5,5",
+    "model_numbers": [
+      "MB991xx/A",
+      "MB990xx/A"
+    ],
+    "configurations": [
+      "13.3\"/2.53/2X2GB/250-5400",
+      "13.3\"/2.53/2X1GB/160-5400"
+    ],
+    "inch": 13
+  },
+  {
+    "model": "MacBook Pro (Retina, 15-inch, Mid 2015)",
+    "model_identifiers": [
+      "MacbookPro 11,4",
+      "MacbookPro 11,5",
+      "MacbookPro 11,5"
+    ],
+    "model_numbers": [
+      "MJLQ2**/A",
+      "MJLT2**/A",
+      "MJLU2**/A"
+    ],
+    "configurations": [
+      "15.4\"/2.2 Quad-core i7/16GB/256GB-Flash",
+      "15.4\"/2.5 Quad-core i7/16GB/512GB-Flash",
+      "15.4\"/2.8 Quad-core i7/16GB/1TB-Flash"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (Retina, 15-inch, Mid 2014)",
+    "model_identifiers": [
+      "MacBook Pro11,2",
+      "MacBook Pro11,3"
+    ],
+    "model_numbers": [
+      "MGXA2xx/A",
+      "MGXC2xx/A"
+    ],
+    "configurations": [
+      "15.4”/2.2 Quad-core i7/16GB/256GB-Flash",
+      "15.4”/2.5 Quad-core i7/16GB/512GB-Flash"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (Retina, 15-inch, Late 2013)",
+    "model_identifiers": [
+      "MacBook Pro11,2",
+      "MacBook Pro11,3"
+    ],
+    "model_numbers": [
+      "ME293xx/A",
+      "ME294xx/A"
+    ],
+    "configurations": [
+      "15.4\"/2.0 Quad-core i7/8GB/256GB-Flash",
+      "15.4\"/2.3 Quad-core i7/16GB/512GB-Flash"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (Retina, 15-inch, Early 2013)",
+    "model_identifier": "MacBookPro10,1",
+    "model_numbers": [
+      "ME664xx/A",
+      "ME665xx/A"
+    ],
+    "configurations": [
+      "15.4\"/2.4 Quad-core i7/8GB/256GB-Flash",
+      "15.4\"/2.7 Quad-core i7/16GB/512GB-Flash"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (Retina, Mid 2012)",
+    "model_identifier": "MacBookPro10,1",
+    "model_numbers": [
+      "MC975xx/A",
+      "MC976xx/A"
+    ],
+    "configurations": [
+      "15.4\"/2.3 Quad-core i7/8GB/256GB-Flash",
+      "15.4\"/2.6 Quad-core i7/8GB/512GB-Flash"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (15-inch, Mid 2012)",
+    "model_identifier": "MacBookPro9,1",
+    "model_numbers": [
+      "MD103xx/A",
+      "MD104xx/A"
+    ],
+    "configurations": [
+      "15.4\"/2.3 Quad-core i7/2x2GB/500-5400",
+      "15.4\"/2.6 Quad-core i7/2x4GB/750-5400"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (15-inch, Late 2011)",
+    "model_identifier": "MacBookPro8,2",
+    "model_numbers": [
+      "MD322xx/A",
+      "MD318xx/A"
+    ],
+    "configurations": [
+      "15.4\"/2.4 Quad-core i7/2x2GB/750-5400",
+      "15.4\"/2.2 Quad-core i7/2x2GB/500-5400"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (15-Inch, Early 2011)",
+    "model_identifier": "MacBookPro8,2",
+    "model_numbers": [
+      "MC723xx/A",
+      "MC721xx/A"
+    ],
+    "configurations": [
+      "15.4\"/2.2 Quad-core i7/2x2GB/750-5400",
+      "15.4\"/2.0 Quad-core i7/2x2GB/500-5400"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (15-inch, Mid 2010)",
+    "model_identifier": "MacBookPro6,2",
+    "model_numbers": [
+      "MC373xx/A",
+      "MC372xx/A",
+      "MC371xx/A"
+    ],
+    "configurations": [
+      "15.4\"/2.66 i7/2x2GB/500-5400/GLSY",
+      "15.4\"/2.53 i5/2x2GB/500-5400/GLSY",
+      "15.4\"/2.4 i5/2x2GB/500-5400/GLSY"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (15-inch, Mid 2009)",
+    "model_identifier": "MacBookPro5,3",
+    "model_numbers": [
+      "MB985xx/A",
+      "MB986xx/A"
+    ],
+    "configurations": [
+      "15.4\"/2.66/2X2GB/320-5400/GLSY",
+      "15.4\"/2.8/2X2GB/500-5400/GLSY"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (15-inch, 2.53GHz, Mid 2009)",
+    "model_identifier": "MacBookPro5,3",
+    "model_numbers": [
+      "MC118xx/A"
+    ],
+    "configurations": [
+      "15.4\"/2.53/2X2GB/250-5400/GLSY"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (15-inch, Late 2008)",
+    "model_identifier": "MacBookPro5,1",
+    "model_numbers": [
+      "MB470xx/A",
+      "MB471xx/A",
+      "MC026xx/A"
+    ],
+    "configurations": [
+      "15.4\"/D2.4G/2G/250/SD-DL",
+      "15.4\"/D2.53G/4G/320/SD-DL",
+      "15.4\"/D2.66G/4G/320/SD-DL"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (15-inch, Early 2008)",
+    "model_identifier": "MacBookPro4,1",
+    "model_numbers": [
+      "MB134xx/A",
+      "MB133xx/A"
+    ],
+    "configurations": [
+      "15.4\"/D2.5G/2G/250/SD-DL",
+      "15.4\"/D2.4G/2G/200/SD-DL"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (15-inch, 2.4/2.2 GHz)",
+    "model_identifier": "MacBookPro3,1",
+    "model_numbers": [
+      "MA895xx/A",
+      "MA896xx/A"
+    ],
+    "configurations": [
+      "15.4\"/D2.2G/2GB/120/SD-DL",
+      "15.4\"/D2.4G/2GB/160/SD-DL"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (15-inch, Core 2 Duo)",
+    "model_identifier": "MacBookPro2,2",
+    "model_numbers": [
+      "MA609xx/A",
+      "MA610xx/A"
+    ],
+    "configurations": [
+      "15.4\"/D2.16G/1G/120/SD-DL",
+      "15.4\"/D2.33G/2G/120/SD-DL"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (15-inch, Glossy)",
+    "model_identifier": "MacBookPro1,1",
+    "model_numbers": [
+      "MA601xx/A",
+      "MA600xx/A"
+    ],
+    "configurations": [
+      "15.4\"/D2.16G/1G/100/Super",
+      "15.4\"/D2.0G/512/80/Super"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro",
+    "model_identifier": "MacBookPro1,1",
+    "model_numbers": [
+      "MA463xx/A",
+      "MA464xx/A"
+    ],
+    "configurations": [
+      "15.4\"/D1.83G/512/80/Super",
+      "15.4\"/D2.0G/1G/100/Super"
+    ],
+    "inch": 15
+  },
+  {
+    "model": "MacBook Pro (17-inch, Late 2011)",
+    "model_identifier": "MacBookPro8,3",
+    "model_number": "MD311xx/A",
+    "configuration": "17\"/2.4 Quad-core i7/2x2GB/750-5400"
+  },
+  {
+    "model": "MacBook Pro (17-inch, Early 2011)",
+    "model_identifier": "MacBookPro8,3",
+    "model_number": "MC725xx/A",
+    "configuration": "17\"/2.2 Quad-core i7/2x2GB/750-5400",
+    "inch": 17
+  },
+  {
+    "model": "MacBook Pro (17-inch, Mid 2010)",
+    "model_identifier": "MacBookPro6,1",
+    "model_number": "MC024xx/A",
+    "configuration": "17\"/2.53 i5/2x2GB/500-5400/GLSY",
+    "inch": 17
+  },
+  {
+    "model": "MacBook Pro (17-inch, Mid 2009)",
+    "model_identifier": "MacBookPro5,2",
+    "model_number": "MC226xx/A",
+    "configuration": "17\"/2.8/2x2GB/500-5400/GLSY",
+    "inch": 17
+  },
+  {
+    "model": "MacBook Pro (17-inch, Early 2009)",
+    "model_identifier": "MacBookPro5,2",
+    "model_number": "MB604xx/A",
+    "configuration": "17\"/D2.66G/2x2G/320/SD-DL",
+    "inch": 17
+  },
+  {
+    "model": "MacBook Pro (17-inch, Late 2008)",
+    "model_identifier": "MacBookPro5,1",
+    "model_number": "MB766xx/A",
+    "configuration": "17\"/D2.5G/4G/320/SD-DL",
+    "inch": 17
+  },
+  {
+    "model": "MacBook Pro (17-inch, Early 2008)",
+    "model_identifier": "MacBookPro4,1",
+    "model_number": "MB166xx/A",
+    "configuration": "17\"/D2.5G/2x1G/250/SD-DL",
+    "inch": 17
+  },
+  {
+    "model": "MacBook Pro (17-inch, 2.4 GHz, Late 2007)",
+    "model_identifier": "MacBookPro3,1",
+    "model_number": "MA897xx/A",
+    "configuration": "17\"/D2.4G/2GB/160/SD-DL",
+    "inch": 17
+  },
+  {
+    "model": "MacBook Pro (17-inch, Core 2 Duo)",
+    "model_identifier": "MacBookPro2,1",
+    "model_number": "MA611xx/A",
+    "configuration": "17\"/D2.33G/2G/160/SD-DL",
+    "inch": 17
+  },
+  {
+    "model": "MacBook Pro (17-inch)",
+    "model_identifier": "MacBookPro1,2",
+    "model_number": "MA092xx/A",
+    "configuration": "17\"/D2.16G/1G/120/SD-DL",
+    "inch": 17
+  }
+]
