@@ -1,0 +1,60 @@
+﻿@model ITSearch.Models.ViewModels.GeneralViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Computers</h1>
+
+<p>
+    <button class="btn btn-primary" asp-action="Create">Create New</button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Computer.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Computer.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Computer.StringYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Computer.ModelIdentifier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Computer.Size)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Computers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StringYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModelIdentifier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

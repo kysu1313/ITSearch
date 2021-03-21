@@ -4,14 +4,16 @@ using ITSearch.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITSearch.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210319020157_Lists")]
+    partial class Lists
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,9 +28,6 @@ namespace ITSearch.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AdditionalInfo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -41,55 +40,12 @@ namespace ITSearch.Data.Migrations
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
-                    b.Property<string>("StringYear")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("Year")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.ToTable("Computers");
-                });
-
-            modelBuilder.Entity("ITSearch.Models.IOSDevice", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("DeviceConfigurationConfigId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DeviceIdentifier")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DeviceModel")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("DeviceModelNumberModelId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DeviceName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StringDeviceConfiguration")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StringYear")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Year")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DeviceConfigurationConfigId");
-
-                    b.HasIndex("DeviceModelNumberModelId");
-
-                    b.ToTable("IOSDevices");
                 });
 
             modelBuilder.Entity("ITSearch.Models.Item", b =>
@@ -113,27 +69,6 @@ namespace ITSearch.Data.Migrations
                     b.HasIndex("ServiceId");
 
                     b.ToTable("Items");
-                });
-
-            modelBuilder.Entity("ITSearch.Models.Procedure", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Action")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Procedures");
                 });
 
             modelBuilder.Entity("ITSearch.Models.Product", b =>
@@ -241,29 +176,6 @@ namespace ITSearch.Data.Migrations
                     b.HasIndex("ServiceId1");
 
                     b.ToTable("Services");
-                });
-
-            modelBuilder.Entity("ITSearch.Models.ToDo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("NewTask")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProcedureId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProcedureId");
-
-                    b.ToTable("ToDo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -488,21 +400,6 @@ namespace ITSearch.Data.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
-            modelBuilder.Entity("ITSearch.Models.IOSDevice", b =>
-                {
-                    b.HasOne("ITSearch.Models.ProductInfo.DeviceConfiguration", "DeviceConfiguration")
-                        .WithMany()
-                        .HasForeignKey("DeviceConfigurationConfigId");
-
-                    b.HasOne("ITSearch.Models.ProductInfo.ModelNumber", "DeviceModelNumber")
-                        .WithMany()
-                        .HasForeignKey("DeviceModelNumberModelId");
-
-                    b.Navigation("DeviceConfiguration");
-
-                    b.Navigation("DeviceModelNumber");
-                });
-
             modelBuilder.Entity("ITSearch.Models.Item", b =>
                 {
                     b.HasOne("ITSearch.Models.Service", null)
@@ -536,13 +433,6 @@ namespace ITSearch.Data.Migrations
                     b.HasOne("ITSearch.Models.Service", null)
                         .WithMany("RelatedServices")
                         .HasForeignKey("ServiceId1");
-                });
-
-            modelBuilder.Entity("ITSearch.Models.ToDo", b =>
-                {
-                    b.HasOne("ITSearch.Models.Procedure", null)
-                        .WithMany("ActionList")
-                        .HasForeignKey("ProcedureId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -601,11 +491,6 @@ namespace ITSearch.Data.Migrations
                     b.Navigation("Configurations");
 
                     b.Navigation("ModelNumbers");
-                });
-
-            modelBuilder.Entity("ITSearch.Models.Procedure", b =>
-                {
-                    b.Navigation("ActionList");
                 });
 
             modelBuilder.Entity("ITSearch.Models.Service", b =>

@@ -8,6 +8,13 @@ namespace ITSearch.Models.ProductInfo
 {
     public class DeviceConfiguration
     {
+        public DeviceConfiguration() { }
+
+        public DeviceConfiguration(string v)
+        {
+            this.Configuration = v;
+        }
+
         [Key]
         public int ConfigId { get; set; }
         public string Configuration { get; set; }

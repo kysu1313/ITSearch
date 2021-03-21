@@ -4,14 +4,16 @@ using ITSearch.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITSearch.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210320002549_AddedIOSDevices")]
+    partial class AddedIOSDevices
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,27 +115,6 @@ namespace ITSearch.Data.Migrations
                     b.HasIndex("ServiceId");
 
                     b.ToTable("Items");
-                });
-
-            modelBuilder.Entity("ITSearch.Models.Procedure", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Action")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Procedures");
                 });
 
             modelBuilder.Entity("ITSearch.Models.Product", b =>
@@ -241,29 +222,6 @@ namespace ITSearch.Data.Migrations
                     b.HasIndex("ServiceId1");
 
                     b.ToTable("Services");
-                });
-
-            modelBuilder.Entity("ITSearch.Models.ToDo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("NewTask")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProcedureId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProcedureId");
-
-                    b.ToTable("ToDo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -538,13 +496,6 @@ namespace ITSearch.Data.Migrations
                         .HasForeignKey("ServiceId1");
                 });
 
-            modelBuilder.Entity("ITSearch.Models.ToDo", b =>
-                {
-                    b.HasOne("ITSearch.Models.Procedure", null)
-                        .WithMany("ActionList")
-                        .HasForeignKey("ProcedureId");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -601,11 +552,6 @@ namespace ITSearch.Data.Migrations
                     b.Navigation("Configurations");
 
                     b.Navigation("ModelNumbers");
-                });
-
-            modelBuilder.Entity("ITSearch.Models.Procedure", b =>
-                {
-                    b.Navigation("ActionList");
                 });
 
             modelBuilder.Entity("ITSearch.Models.Service", b =>

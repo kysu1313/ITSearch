@@ -13,10 +13,12 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Data;
 using Newtonsoft.Json.Linq;
+using ITSearch.Models.ProductInfo;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ITSearch.Controllers
 {
-
+    [Authorize]
     public class ServicesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,8 +26,6 @@ namespace ITSearch.Controllers
         public ServicesController(ApplicationDbContext context)
         {
             _context = context;
-
-            ParseJson();
         }
 
         // GET: Services
@@ -33,48 +33,50 @@ namespace ITSearch.Controllers
         {
             List<Service> services = await _context.Services.ToListAsync();
 
-            ServiceViewModel svm = new ServiceViewModel();
+            GeneralViewModel svm = new GeneralViewModel();
             svm.Services = services;
 
             return View(svm);
         }
 
         [HttpPost]
-        public async Task<IActionResult> search(Search search)
+        public async Task<IActionResult> search(GeneralViewModel search)
         {
-            //if (!User.Identity.IsAuthenticated)
-            //{
-            //    return 
-            //}
 
             IEnumerable<Service> services = _context.Services.Search(
                 m => m.ServiceName.ToLower(), 
                 m => m.AdditionalInfo.ToLower())
-                .Containing(search.SearchText.ToLower());
+                .Containing(search.NewSearch.SearchText.ToLower());
 
-            ServiceViewModel svm = new ServiceViewModel();
-            svm.Services = services;
+            IEnumerable<Procedure> procedures = _context.Procedures.Search(
+                m => m.Name.ToLower(),
+                m => m.Action.ToLower(),
+                m => m.Notes.ToLower())
+                .Containing(search.NewSearch.SearchText.ToLower());
 
-            return View("Index", svm);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> InnerSearch(ServiceViewModel search)
-        {
-            //if (!User.Identity.IsAuthenticated)
-            //{
-            //    return 
-            //}
-
-            IEnumerable<Service> services = _context.Services.Search(
-                m => m.ServiceName.ToLower(),
+            IEnumerable<Computer> computers = _context.Computers.Search(
+                m => m.Description.ToLower(),
+                m => m.Model.ToLower(),
+                m => m.ModelIdentifier.ToLower(),
                 m => m.AdditionalInfo.ToLower())
                 .Containing(search.NewSearch.SearchText.ToLower());
 
-            ServiceViewModel svm = new ServiceViewModel();
-            svm.Services = services;
+            IEnumerable<IOSDevice> iOSDevices = _context.IOSDevices.Search(
+                m => m.DeviceName.ToLower(),
+                m => m.DeviceModel.ToLower(),
+                m => m.DeviceConfiguration.Configuration.ToLower(),
+                m => m.DeviceModelNumber.Model.ToLower())
+                .Containing(search.NewSearch.SearchText.ToLower());
 
-            return View("Index", svm);
+
+
+            GeneralViewModel gvm = new GeneralViewModel();
+            gvm.Services = services;
+            gvm.Computers = computers;
+            gvm.IOSDevices = iOSDevices;
+            gvm.Procedures = procedures;
+
+            return View("Index", gvm);
         }
 
         [HttpPost]
@@ -90,15 +92,6 @@ namespace ITSearch.Controllers
                              }).ToList();
 
             return Json(services);
-        }
-
-        public void ParseJson()
-        {
-
-            Computer comp = JObject.Parse(System.IO.File.ReadAllText(@"Data/mbpModels.json")).ToObject<Computer>();
-            Console.WriteLine(comp);
-
-
         }
 
         // GET: Services/Details/5

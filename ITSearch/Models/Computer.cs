@@ -12,15 +12,28 @@ namespace ITSearch.Models
         public int Id { get; set; }
 
         public string Description { get; set; }
+
         public string Model { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime Year { get; set; }
-        [Display(Name = "Model ID")]
+
+        [Display(Name = "Year")]
+        public string StringYear { get; set; }
+
+        [Display(Name = "Model Identifier")]
         public string ModelIdentifier { get; set; }
-        [Display(Name = "Model Numbers")]
-        public IEnumerable<ModelNumber> ModelNumbers { get; set; }
+
+        [Display(Name = "Model Number")]
+        public IList<ModelNumber> ModelNumbers { get; set; }
+
         [Display(Name = "Configurations")]
-        public IEnumerable<DeviceConfiguration> Configurations { get; set; }
+        public IList<DeviceConfiguration> Configurations { get; set; }
+
         public int Size { get; set; }
+
+        [Display(Name = "Additional Info")]
+        public string AdditionalInfo { get; set; }
 
     }
 }

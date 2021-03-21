@@ -1,4 +1,4 @@
-﻿@model ITSearch.Models.Search
+﻿@model ITSearch.Models.ViewModels.GeneralViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -12,7 +12,7 @@
 
         <form asp-controller="Services" asp-action="search" method="post">
             <div class="input-group mb-3">
-                <input asp-for="SearchText" asp-action="search" asp-controller="Services"
+                <input asp-for="NewSearch.SearchText" asp-action="search" asp-controller="Services"
                        type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="search here:">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit">Search</button>

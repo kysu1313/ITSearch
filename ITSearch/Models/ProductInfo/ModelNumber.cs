@@ -8,6 +8,13 @@ namespace ITSearch.Models.ProductInfo
 {
     public class ModelNumber
     {
+        public ModelNumber() { }
+
+        public ModelNumber(string v)
+        {
+            this.Model = v;
+        }
+
         [Key]
         public int ModelId { get; set; }
         public string Model { get; set; }

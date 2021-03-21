@@ -1,0 +1,65 @@
+﻿@model ITSearch.Models.ViewModels.GeneralViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>IOS Devices</h1>
+
+<p>
+    <button class="btn btn-primary" asp-action="Create">Create New</button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IOSDevice.DeviceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IOSDevice.DeviceIdentifier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IOSDevice.DeviceModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IOSDevice.StringDeviceConfiguration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IOSDevice.StringYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IOSDevice.Year)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.IOSDevices) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceIdentifier)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StringDeviceConfiguration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StringYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

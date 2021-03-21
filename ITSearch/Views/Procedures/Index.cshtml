@@ -1,0 +1,60 @@
+﻿@model ITSearch.Models.ViewModels.GeneralViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>General Information</h1>
+<h3>Forgot how to do something? No worries.</h3>
+
+<form asp-controller="Procedures" asp-action="search" method="post">
+    <div class="input-group mb-3">
+        <input id="searchTerm" asp-for="NewSearch.SearchText" asp-action="search" asp-controller="Procedures"
+               type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="search here:">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+
+<p>
+    <button class="btn btn-primary" asp-action="Create">Create New</button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Procedure.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Procedure.Action)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Procedure.Notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Procedures)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Action)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

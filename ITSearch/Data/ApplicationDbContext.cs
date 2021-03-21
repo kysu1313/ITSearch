@@ -22,6 +22,8 @@ namespace ITSearch.Data
         public DbSet<Service> Services { get; set; }
         public DbSet<Search> Searches { get; set; }
         public DbSet<Computer> Computers { get; set; }
+        public DbSet<IOSDevice> IOSDevices { get; set; }
+        public DbSet<Procedure> Procedures { get; set; }
 
         public DbSet<ModelNumber> ModelNumbers { get; set; }
         public DbSet<DeviceConfiguration> Configurations{ get; set; }
