@@ -7,9 +7,21 @@
 <h1>Computers</h1>
 
 <p>
-    <button class="btn btn-primary" asp-action="Create">Create New</button>
+    <a class="btn btn-primary" asp-action="Create" asp-controller="Computers">Add New</a>
 </p>
-<table class="table">
+
+
+<form asp-controller="Computers" asp-action="search" method="post">
+    <div class="input-group mb-3">
+        <input id="searchTerm" asp-for="NewSearch.SearchText" asp-action="search" asp-controller="Computers"
+               type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="search here:">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+
+<table id="computerTable" class="table">
     <thead>
         <tr>
             <th>
@@ -49,12 +61,25 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Size)
                 </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <td class="btn-group">
+                    @*<span>*@
+                        <a class="btn btn-sm btn-info" asp-action="Details" asp-controller="Computers" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="Computers" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-controller="Computers" asp-route-id="@item.Id">Delete</a>
+                    @*</span>*@
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+
+@section scripts
+    {
+    <script>
+        $('#computerTable').dataTable({
+            "processing": true
+        });
+    </script>
+}

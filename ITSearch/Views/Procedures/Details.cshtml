@@ -10,23 +10,35 @@
     <h4>Procedure</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Action)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Action)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Notes)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dd class="col-sm-10">
+            @if (Model.ActionList.Count() > 0)
+            {
+                <ul class="list-group">
+                    @foreach (ToDo task in Model.ActionList)
+                    {
+                        <li class="list-group-item">@task</li>
+                    }
+                </ul>
+            }
         </dd>
     </dl>
 </div>

@@ -1,4 +1,5 @@
-﻿@model ITSearch.Models.Procedure
+﻿@model ITSearch.Models.ViewModels.ProcedureViewModel
+@using DynamicVML.Extensions
 
 @{
     ViewData["Title"] = "Create";
@@ -10,23 +11,60 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" id="form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Procedure.Name" class="control-label"></label>
+                <input asp-for="Procedure.Name" class="form-control" />
+                <span asp-validation-for="Procedure.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Action" class="control-label"></label>
-                <input asp-for="Action" class="form-control" />
-                <span asp-validation-for="Action" class="text-danger"></span>
+                <label asp-for="Procedure.Action" class="control-label"></label>
+                <input asp-for="Procedure.Action" class="form-control" />
+                <span asp-validation-for="Procedure.Action" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Notes" class="control-label"></label>
-                <input asp-for="Notes" class="form-control" />
-                <span asp-validation-for="Notes" class="text-danger"></span>
+                <label asp-for="Procedure.Notes" class="control-label"></label>
+                <input asp-for="Procedure.Notes" class="form-control" />
+                <span asp-validation-for="Procedure.Notes" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="NewToDo" class="control-label"></label>
+                <button type="button" id="addChoice">Add Step</button>
+                <table id="tbl">
+                    <tbody>
+                        <tr>
+                            <input type="text" asp-for="NewToDo.NewTask" />
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <table id="tasks">
+                <tbody>
+                    <tr>
+                        <input type="text" asp-for="NewToDo.NewTask" />
+                    </tr>
+                </tbody>
+            </table>
+
+
+            @*https://dev.to/stevcooo/add-items-dynamically-in-list-in-net-core-40i9*@
+            @*<div id="taskItemsContainer">
+            @Html.ListEditorFor(model => model.ToDos)
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <input class="btn btn-success" type="button" id="btnAdd" value="Add Task" />
+            </div>
+        </div>*@
+
+            @*<div>
+            <h3>Steps</h3>
+            @Html.ListEditorFor(x => x.ToDos, Url.Action("AddTask"), "Add Step")
+        </div>*@
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -40,4 +78,33 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script>
+        $(function () {
+            $("#addChoice").click(function () {
+                input = jQuery('<input name="myname">');
+                console.log("testingggg");
+                jQuery("#tbl tbody").append('<tr><td><input type="text" asp-for="NewToDo.NewTask" /></td></tr>');
+
+                @*$.ajax({
+                    async: true,
+                    data: $('#form').serialize(),
+                    type: "POST",
+                    url: '/Procedures/AddTask',
+                    success: function (partialView) {
+                        console.log("partialView: " + partialView);
+                        $('#taskItemsContainer').html(partialView);
+                    }
+                })*@
+            });
+            var url = '@Url.Action("AddTask", "Procedures")';
+            $('#addChoice').click(function() {
+              @*var keyWord = $('#Keyword').val();*@
+                $('#tasks tbody').load(url);
+                @*, { searchText: keyWord }*@
+            })
+        });
+</script>
+
 }
+

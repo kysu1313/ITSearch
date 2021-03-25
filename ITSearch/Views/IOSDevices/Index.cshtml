@@ -6,10 +6,11 @@
 
 <h1>IOS Devices</h1>
 
+
 <p>
-    <button class="btn btn-primary" asp-action="Create">Create New</button>
+    <a class="btn btn-primary" asp-action="Create" asp-controller="IOSDevices">Add New</a>
 </p>
-<table class="table">
+<table id="iosTable" class="table">
     <thead>
         <tr>
             <th>
@@ -34,7 +35,8 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.IOSDevices) {
+        @foreach (var item in Model.IOSDevices)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.DeviceName)
@@ -54,12 +56,24 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Year)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <td class="btn-group">
+                @*<span>*@
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-controller="IOSDevices" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="IOSDevices" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-controller="IOSDevices" asp-route-id="@item.Id">Delete</a>
+                @*</span>*@
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+
+
+@section scripts
+    {
+    <script>
+        $('#iosTable').dataTable({
+            "processing": true
+        });
+    </script>
+}

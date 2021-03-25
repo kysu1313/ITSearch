@@ -9,9 +9,11 @@ using ITSearch.Data;
 using ITSearch.Models;
 using NinjaNye.SearchExtensions;
 using ITSearch.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ITSearch.Controllers
 {
+    [Authorize]
     public class IOSDevicesController : Controller
     {
         private readonly ApplicationDbContext _context;

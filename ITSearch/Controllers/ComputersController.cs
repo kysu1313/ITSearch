@@ -8,9 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using ITSearch.Data;
 using ITSearch.Models;
 using ITSearch.Models.ViewModels;
+using NinjaNye.SearchExtensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ITSearch.Controllers
 {
+    [Authorize]
     public class ComputersController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -27,6 +30,25 @@ namespace ITSearch.Controllers
             cvm.Computers = await _context.Computers.ToListAsync();
             cvm.ModelNumbers = await _context.ModelNumbers.ToListAsync();
             return View(cvm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> search(GeneralViewModel search)
+        {
+
+            IEnumerable<Computer> computers = _context.Computers.Search(
+                m => m.Description.ToLower(),
+                m => m.Model.ToLower(),
+                m => m.ModelIdentifier.ToLower(),
+                m => m.AdditionalInfo.ToLower())
+                .Containing(search.NewSearch.SearchText.ToLower());
+
+
+
+            GeneralViewModel gvm = new GeneralViewModel();
+            gvm.Computers = computers;
+
+            return View("Index", gvm);
         }
 
         // GET: Computers/Details/5

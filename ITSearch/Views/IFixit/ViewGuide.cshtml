@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@model ITSearch.Models.ViewModels.GuideViewModel
+
+
+<div>
+    <ul>
+        @foreach (var item in Model.Guide.steps)
+        {
+            @if(item.lines.Count() > 0)
+            {
+            <ul>
+                @foreach(var line in item.lines)
+                {
+                    <li>@line.text_raw</li>
+                }
+            </ul>
+            } else
+            {
+                <li>@item.lines[0].text_raw</li>
+            }
+        }
+    </ul>
+</div>

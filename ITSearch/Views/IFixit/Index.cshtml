@@ -1,0 +1,88 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model ITSearch.Models.ViewModels.iFixitViewModel
+
+<div>
+    <a asp-action="CallApi" asp-controller="IFixit">Start</a>
+</div>
+
+
+
+@if (Model != null && Model.IFixitSearchResult.results != null)
+{
+<table id="serviceTable" class="table table-striped table-bordered dt-responsive" width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IFixitJsonResult.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IFixitJsonResult.subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IFixitJsonResult.difficulty)
+            </th>
+            <th>
+                Image
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+
+
+    <tbody>
+        @foreach (var item in Model.IFixitSearchResult.results)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            @if (item.dataType == "wiki")
+            {
+                <td>
+                    Wiki Article
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.wikiid)
+                </td>
+            }
+            else if (item.dataType == "guide")
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.difficulty)
+                </td>
+            }
+            <td>
+                <img class="img-thumbnail" src="@item.image.thumbnail" />
+            </td>
+
+            
+            <td class="btn-group">
+                @*<span>*@
+                @*<a class="btn btn-sm btn-primary" asp-action="ViewGuide" asp-route-id="@item.guideid">View Guide</a>*@
+                @Html.ActionLink("View Guide", "ViewGuide", "IFixit", new { item.guideid }, new { @class = "btn btn-sm btn-primary" })
+
+                @*<a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item">Details</a>*@
+                <a class="btn btn-sm btn-danger">Delete</a>
+                <a class="btn btn-sm btn-warning" href="@item.url">View On iFixit</a>
+                @*</span>*@
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+else
+{
+    <div class="alert alert-success font-weight-bold" role="alert">
+        Sorry, no results found
+    </div>
+}

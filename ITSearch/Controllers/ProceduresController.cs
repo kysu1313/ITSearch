@@ -33,22 +33,25 @@ namespace ITSearch.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> search([Bind("SearchText")] Search search)
+        public async Task<IActionResult> search([Bind("NewSearch, SearchText")] GeneralViewModel search)
         {
-            //if (!User.Identity.IsAuthenticated)
-            //{
-            //    return 
-            //}
 
             IEnumerable<Procedure> procedures = _context.Procedures.Search(
                 m => m.Name.ToLower(),
                 m => m.Action.ToLower())
-                .Containing(search.SearchText.ToLower());
+                .Containing(search.NewSearch.SearchText.ToLower());
 
             GeneralViewModel pvm = new GeneralViewModel();
             pvm.Procedures = procedures;
 
             return View("Index", pvm);
+        }
+
+        public IActionResult AddTask()
+        {
+            var newTask = new ToDo();
+
+            return this.PartialView("PartialTask");
         }
 
         // GET: Procedures/Details/5
@@ -72,7 +75,9 @@ namespace ITSearch.Controllers
         // GET: Procedures/Create
         public IActionResult Create()
         {
-            return View();
+            ProcedureViewModel pvm = new ProcedureViewModel();
+            pvm.ToDos = new DynamicVML.DynamicList<ToDo>();
+            return View(pvm);
         }
 
         // POST: Procedures/Create
@@ -80,10 +85,25 @@ namespace ITSearch.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Action,Notes")] Procedure procedure)
+        public async Task<IActionResult> Create([Bind("Procedures,Procedure,NewSearch,NewToDo,ToDos")] ProcedureViewModel pvm)
         {
+            Procedure procedure = new Procedure();
+
             if (ModelState.IsValid)
             {
+                procedure.Id = pvm.Procedure.Id;
+                procedure.Name = pvm.Procedure.Name;
+                procedure.Notes = pvm.Procedure.Notes;
+                procedure.Action = pvm.Procedure.Action;
+
+                //if (pvm.ToDos.Count() > 0)
+                //{
+                //    foreach(ToDo todo in pvm.ToDos)
+                //    {
+                //        procedure.ActionList.Append(todo);
+                //    }
+                //}
+
                 _context.Add(procedure);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -106,6 +126,7 @@ namespace ITSearch.Controllers
             }
             return View(procedure);
         }
+
 
         // POST: Procedures/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
