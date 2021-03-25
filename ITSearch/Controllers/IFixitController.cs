@@ -1,4 +1,5 @@
-﻿using ITSearch.Models.IFixit;
+﻿using ITSearch.Models;
+using ITSearch.Models.IFixit;
 using ITSearch.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,13 +17,11 @@ namespace ITSearch.Controllers
             return View();
         }
 
-        public IActionResult CallApi()
+        public IActionResult CallApi(iFixitViewModel searchItem)
         {
             IFixitApi ifa = new IFixitApi();
 
-            //ifa.CreateToken();
-            string search = HttpUtility.UrlEncode("MacBook Pro 15");
-            string newSearch = HttpUtility.UrlEncode("4000");
+            string search = HttpUtility.UrlEncode(searchItem.NewSearch.SearchText);
             IFixitSearchResult data = ifa.MakeCall("search/" + search + "?pretty");
 
             iFixitViewModel ifvm = new iFixitViewModel();
@@ -37,8 +36,6 @@ namespace ITSearch.Controllers
         {
             IFixitApi ifa = new IFixitApi();
 
-            //ifa.CreateToken();
-            string search = HttpUtility.UrlEncode("MacBook Pro 15");
             string newSearch = HttpUtility.UrlEncode(guideId.ToString());
             IFixitGuide data = ifa.MakeGuideCall("guides/" + guideId + "?pretty");
 
@@ -46,6 +43,21 @@ namespace ITSearch.Controllers
             ifvm.Guide = data;
 
             return View("ViewGuide", ifvm);
+        }
+
+        [HttpGet]
+        public IActionResult ViewWiki([FromQuery] string wikiTitle)
+        {
+            IFixitApi ifa = new IFixitApi();
+
+            //string ns = HttpUtility.UrlEncode(wikiNamespace);
+            string title = HttpUtility.UrlEncode(wikiTitle);
+            IFixitWiki data = ifa.MakeWikiCall("wikis/CATEGORY/" + title + "?pretty");
+
+            WikiViewModel ifvm = new WikiViewModel();
+            ifvm.IFixitWiki = data;
+
+            return View("ViewWiki", ifvm);
         }
     }
 }

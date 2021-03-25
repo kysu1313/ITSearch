@@ -74,7 +74,24 @@ namespace ITSearch.Models.IFixit
          */
         private IFixitSearchResult ParseSearchJson(JObject job)
         {
-            IFixitSearchResult ri = JsonConvert.DeserializeObject<IFixitSearchResult>(job.ToString());
+            // Prevent null values in response
+            var settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+
+            IFixitSearchResult ri;
+
+            try
+            {
+                ri = JsonConvert.DeserializeObject<IFixitSearchResult>(job.ToString(), settings);
+            }
+            catch (NullReferenceException ex)
+            {
+                throw;
+            }
+
             return ri;
         }
 
@@ -128,6 +145,50 @@ namespace ITSearch.Models.IFixit
                 throw;
             }
             
+            return ri;
+        }
+
+        public IFixitWiki MakeWikiCall(string query)
+        {
+            try
+            {
+                using (WebClient webClient = new WebClient())
+                {
+                    webClient.Headers.Add("Content-Type", "application/json; charset=utf-8"); //; charset=utf-8
+                    webClient.BaseAddress = URL;
+                    var json = webClient.DownloadString(query);
+                    System.Diagnostics.Debug.WriteLine(json);
+                    JObject job = JObject.Parse(json);
+
+                    return ParseWikiJson(job);
+                }
+            }
+            catch (WebException ex)
+            {
+                throw;
+            }
+        }
+
+        private IFixitWiki ParseWikiJson(JObject job)
+        {
+            // Prevent null values in response
+            var settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+
+            IFixitWiki ri;
+
+            try
+            {
+                ri = JsonConvert.DeserializeObject<IFixitWiki>(job.ToString(), settings);
+            }
+            catch (NullReferenceException ex)
+            {
+                throw;
+            }
+
             return ri;
         }
     }

@@ -21,6 +21,14 @@
             {
                 <li>@item.lines[0].text_raw</li>
             }
+            
+            @foreach (var image in item.media.data)
+            {
+                <li>
+                    <img class="img-fluid" src="@image.medium" />
+                </li>
+            }
+            
         }
     </ul>
 </div>

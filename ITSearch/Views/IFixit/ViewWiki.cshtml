@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@model ITSearch.Models.ViewModels.WikiViewModel
+
+
+<div>
+    <ul>
+        <li>@Model.IFixitWiki.summary</li>
+        @*@foreach (var item in Model.IFixitWiki)
+        {
+            @if (item.lines.Count() > 0)
+            {
+                <ul>
+                    @foreach (var line in item.lines)
+                    {
+                        <li>@line.text_raw</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <li>@item.lines[0].text_raw</li>
+            }
+
+            @foreach (var image in item.media.data)
+            {
+                <li>
+                    <img class="img-fluid" src="@image.medium" />
+                </li>
+            }
+
+        }*@
+    </ul>
+</div>
