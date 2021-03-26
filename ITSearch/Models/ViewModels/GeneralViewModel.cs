@@ -1,4 +1,5 @@
 ﻿using ITSearch.Models.ProductInfo;
+using ITSearch.Models.IFixit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,11 @@ namespace ITSearch.Models.ViewModels
         public ModelNumber ModelNumber { get; set; }
         public IEnumerable<Service> Services { get; set; }
         public Service Service { get; set; }
+
+
+        public IFixitSearchResult IFixitSearchResult { get; set; }
+        public IFixitJsonResult IFixitJsonResult { get; set; }
+        public JsonImage JsonImage { get; set; }
 
         public Search NewSearch { get; set; }
 

@@ -52,10 +52,10 @@ namespace ITSearch.Controllers
 
             //string ns = HttpUtility.UrlEncode(wikiNamespace);
             string title = HttpUtility.UrlEncode(wikiTitle);
-            IFixitWiki data = ifa.MakeWikiCall("wikis/CATEGORY/" + title + "?pretty");
+            IFixitWikiPost data = ifa.MakeWikiCall("wikis/CATEGORY/" + title + "?pretty");
 
             WikiViewModel ifvm = new WikiViewModel();
-            ifvm.IFixitWiki = data;
+            ifvm.WikiPost = data;
 
             return View("ViewWiki", ifvm);
         }
