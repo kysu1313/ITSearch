@@ -148,7 +148,7 @@ namespace ITSearch.Models.IFixit
             return ri;
         }
 
-        public IFixitWiki MakeWikiCall(string query)
+        public IFixitWikiPost MakeWikiCall(string query)
         {
             try
             {
@@ -169,7 +169,7 @@ namespace ITSearch.Models.IFixit
             }
         }
 
-        private IFixitWiki ParseWikiJson(JObject job)
+        private IFixitWikiPost ParseWikiJson(JObject job)
         {
             // Prevent null values in response
             var settings = new JsonSerializerSettings
@@ -178,11 +178,11 @@ namespace ITSearch.Models.IFixit
                 MissingMemberHandling = MissingMemberHandling.Ignore
             };
 
-            IFixitWiki ri;
+            IFixitWikiPost ri;
 
             try
             {
-                ri = JsonConvert.DeserializeObject<IFixitWiki>(job.ToString(), settings);
+                ri = JsonConvert.DeserializeObject<IFixitWikiPost>(job.ToString(), settings);
             }
             catch (NullReferenceException ex)
             {

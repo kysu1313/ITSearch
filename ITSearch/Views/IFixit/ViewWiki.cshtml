@@ -5,32 +5,40 @@
 @model ITSearch.Models.ViewModels.WikiViewModel
 
 
-<div>
-    <ul>
-        <li>@Model.IFixitWiki.summary</li>
-        @*@foreach (var item in Model.IFixitWiki)
+<h3>@Model.WikiPost.title</h3>
+<div class="float-container">
+    <h5>@Model.WikiPost.description</h5>
+    <img src="@Model.WikiPost.image" />
+    <br />
+    <div class="float-child">
+        @if (Model.WikiPost.guides != null)
         {
-            @if (item.lines.Count() > 0)
-            {
-                <ul>
-                    @foreach (var line in item.lines)
-                    {
-                        <li>@line.text_raw</li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <li>@item.lines[0].text_raw</li>
-            }
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                @foreach (var guide in Model.WikiPost.guides)
+                {
+                    <a class="dropdown-item" asp-action="ViewGuide"></a>
+                    @Html.ActionLink("View Guide", "ViewGuide", "IFixit", routeValues: new { guideId = guide.guideid }, new { @class = "btn btn-sm btn-primary" })
+                }
+            </div>
+        }
+    </div>
 
-            @foreach (var image in item.media.data)
+    <div class="float-child">
+        @if (Model.WikiPost.guides != null)
+        {
+            foreach (var guide in Model.WikiPost.guides)
             {
-                <li>
-                    <img class="img-fluid" src="@image.medium" />
-                </li>
-            }
 
-        }*@
-    </ul>
+                <div class="card" style="width: 18rem;">
+                    @*<img class="card-img-top" src="@guide.image.medium" alt="Card image cap">*@
+                    <div class="card-body">
+                        <h5 class="card-title">@guide.subject</h5>
+                        <p class="card-text">@guide.summary</p>
+                        @Html.ActionLink("View Guide", "ViewGuide", "IFixit", routeValues: new { guideId = guide.guideid }, new { @class = "btn btn-sm btn-primary" })
+                        @*<a asp-action="ViewGuide" asp-controller="IFixit" asp-all-route-data="@guide.guideid" class="btn btn-primary">View Guide</a>*@
+                    </div>
+                </div>
+            }
+        }
+    </div>
 </div>

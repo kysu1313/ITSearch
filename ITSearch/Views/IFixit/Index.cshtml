@@ -53,58 +53,57 @@
         <tbody>
             @foreach (var item in Model.IFixitSearchResult.results)
             {
-                <tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                @if (item.dataType == "wiki")
+                {
                     <td>
-                        @Html.DisplayFor(modelItem => item.title)
+                        Wiki Article
                     </td>
-                    @if (item.dataType == "wiki")
-                    {
-                        <td>
-                            Wiki Article
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.wikiid)
-                        </td>
-                    }
-                    else if (item.dataType == "guide")
-                    {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.subject)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.difficulty)
-                        </td>
-                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.wikiid)
+                    </td>
+                }
+                else if (item.dataType == "guide")
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.difficulty)
+                    </td>
+                }
+
+                @if (item.image != null)
+                {
                     <td>
                         <img class="img-thumbnail" src="@item.image.thumbnail" />
                     </td>
+                } else
+                {
+                    <td>No image</td>
+                }
 
 
-                    <td class="btn-group">
-                        @*<span>*@
-                        @*<a class="btn btn-sm btn-primary" asp-action="ViewGuide" asp-route-id="@item.guideid">View Guide</a>*@
-                        @if (item.dataType == "guide")
-                        {
-                            @Html.ActionLink("View Guide", "ViewGuide", "IFixit", new { item.guideid }, new { @class = "btn btn-sm btn-primary" })
-                        }
-                        else if (item.dataType == "wiki")
-                        {
-                            @*<a class="btn btn-sm btn-primary" asp-controller="IFixit" asp-action="ViewWiki" asp-route-id="@item.title">View Wiki</a>
-                            <form asp-controller="IFixit" asp-action="ViewWiki" method="post">
-                                
-                                <button id="searchTerm" asp-for="NewSearch.SearchText" asp-action="CallApi" asp-controller="IFixit"
-                                        type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="search here:"></button>
-                                
-                            </form>*@
-                            @Html.ActionLink("View Wiki", "ViewWiki", "IFixit", routeValues: new { wikiTitle = item.title }, new { @class = "btn btn-sm btn-primary" })
-                        }
+
+                <td class="btn-group">
+                    @if (item.dataType == "guide")
+                    {
+                        @Html.ActionLink("View Guide", "ViewGuide", "IFixit", new { item.guideid }, new { @class = "btn btn-sm btn-success" })
+                    }
+                    else if (item.dataType == "wiki")
+                    {
+                        @Html.ActionLink("View Wiki", "ViewWiki", "IFixit", routeValues: new { wikiTitle = item.title }, new { @class = "btn btn-sm btn-primary" })
+                    }
 
 
-                        @*<a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item">Details</a>*@
-                        <a class="btn btn-sm btn-warning" href="@item.url">View On iFixit</a>
-                        @*</span>*@
-                    </td>
-                </tr>
+                    @*<a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item">Details</a>*@
+                    <a class="btn btn-sm btn-warning" href="@item.url">View On iFixit</a>
+                    @*</span>*@
+                </td>
+            </tr>
             }
         </tbody>
     </table>
