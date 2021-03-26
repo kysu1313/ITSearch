@@ -24,9 +24,19 @@
 <h3 class="badge badge-pill badge-warning">Scroll for more results</h3>
 
 
-<div class="container">
+<div class="container" style="width:90%;">
     <br />
-    <div style="width:90%; margin:0 auto;">
+
+
+
+
+    @*==================================================================================================================================*@
+
+
+
+
+
+    <div style="width:48%; margin:0 auto;">
         @if (Model.Services != null && Model.Services.Count() != 0)
         {
             <div class="alert alert-success font-weight-bold" role="alert">
@@ -67,10 +77,10 @@
                             </td>
                             <td class="btn-group">
                                 @*<span>*@
-                                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.ServiceId">Edit</a>
-                                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.ServiceId">Details</a>
-                                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.ServiceId">Delete</a>
-                                 @*</span>*@
+                                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.ServiceId">Edit</a>
+                                <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.ServiceId">Details</a>
+                                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.ServiceId">Delete</a>
+                                @*</span>*@
                             </td>
                         </tr>
                     }
@@ -127,9 +137,9 @@
                             </td>
                             <td class="btn-group">
                                 @*<span>*@
-                                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="Procdeures" asp-route-id="@item.Id">Edit</a>
-                                    <a class="btn btn-sm btn-info" asp-action="Details" asp-controller="Procdeures" asp-route-id="@item.Id">Details</a>
-                                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-controller="Procdeures" asp-route-id="@item.Id">Delete</a>
+                                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="Procdeures" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn btn-sm btn-info" asp-action="Details" asp-controller="Procdeures" asp-route-id="@item.Id">Details</a>
+                                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-controller="Procdeures" asp-route-id="@item.Id">Delete</a>
                                 @*</span>*@
                             </td>
                         </tr>
@@ -199,9 +209,9 @@
                             <td class="btn-group">
 
                                 @*<span>*@
-                                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="Computers" asp-route-id="@item.Id">Edit</a>
-                                    <a class="btn btn-sm btn-info" asp-action="Details" asp-controller="Computers" asp-route-id="@item.Id">Details</a>
-                                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-controller="Computers" asp-route-id="@item.Id">Delete</a>
+                                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="Computers" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn btn-sm btn-info" asp-action="Details" asp-controller="Computers" asp-route-id="@item.Id">Details</a>
+                                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-controller="Computers" asp-route-id="@item.Id">Delete</a>
                                 @*</span>*@
                             </td>
                         </tr>
@@ -277,9 +287,9 @@
                             <td class="btn-group">
 
                                 @*<span>*@
-                                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="IOSDevices" asp-route-id="@item.Id">Edit</a>
-                                    <a class="btn btn-sm btn-info" asp-action="Details" asp-controller="IOSDevices" asp-route-id="@item.Id">Details</a>
-                                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-controller="IOSDevices" asp-route-id="@item.Id">Delete</a>
+                                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="IOSDevices" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn btn-sm btn-info" asp-action="Details" asp-controller="IOSDevices" asp-route-id="@item.Id">Details</a>
+                                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-controller="IOSDevices" asp-route-id="@item.Id">Delete</a>
                                 @*</span>*@
                             </td>
                         </tr>
