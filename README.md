@@ -1,10 +1,14 @@
 # IT-Search
  Quick search web app for I.T. Worx
 
-![Alt text](./pics/home-page.jpg "Powerful Searches")
+ Powerful Searches
+![Screenshot](pics/home-page.jpg)
 
-![Alt text](./pics/search-result.jpg "Relevant Results")
+Relevant Results
+![Screenshot](pics/search-result.jpg)
 
-![Alt text](./pics/guides-and-wikis.jpg "Repair Guides and Wikis")
+Repair Guides and Wikis
+![Screenshot](pics/guides-and-wikis.jpg)
 
-![Alt text](./pics/procedure-info.jpg "Find Procedure Information")
+Find Procedure Information
+![Screenshot](pics/procedure-info.jpg)
