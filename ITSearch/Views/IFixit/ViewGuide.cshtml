@@ -5,30 +5,47 @@
 @model ITSearch.Models.ViewModels.GuideViewModel
 
 
+
+
 <div>
-    <ul>
+    <ol>
         @foreach (var item in Model.Guide.steps)
         {
-            @if(item.lines.Count() > 0)
-            {
-            <ul>
-                @foreach(var line in item.lines)
-                {
-                    <li>@line.text_raw</li>
-                }
-            </ul>
-            } else
-            {
-                <li>@item.lines[0].text_raw</li>
-            }
-            
-            @foreach (var image in item.media.data)
-            {
-                <li>
-                    <img class="img-fluid" src="@image.medium" />
-                </li>
-            }
-            
+            <li>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        @*<h5 class="card-title">Card title</h5>*@
+                        @if (item.lines.Count() > 0)
+                        {
+
+                            <ul>
+                                @foreach (var line in item.lines)
+                                {
+                                    <li>
+                                        <p class="card-text">@line.text_raw</p>
+                                    </li>
+
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <li>@item.lines[0].text_raw</li>
+                        }
+                        @*<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>*@
+                    </div>
+                    <ul>
+                        @foreach (var image in item.media.data)
+                        {
+                            <li>
+                                <img class="card-img-bottom" src="@image.medium" />
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </li>
         }
-    </ul>
+    </ol>
 </div>
+

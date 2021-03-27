@@ -4,41 +4,97 @@
 
 @model ITSearch.Models.ViewModels.WikiViewModel
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 <h3>@Model.WikiPost.title</h3>
-<div class="float-container">
+<div class="container">
     <h5>@Model.WikiPost.description</h5>
     <img src="@Model.WikiPost.image" />
     <br />
-    <div class="float-child">
-        @if (Model.WikiPost.guides != null)
-        {
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+    @if (Model.WikiPost.featured_guides != null)
+    {
+        <table id="wikiTable" class="table table-striped table-bordered dt-responsive">
+
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Description</th>
+                    <th>View Guide</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var guide in Model.WikiPost.featured_guides)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => guide.subject)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => guide.summary)
+                        </td>
+                        <td>
+                            @Html.ActionLink("View Guide", "ViewGuide", "IFixit", routeValues: new { guideId = guide.guideid }, new { @class = "btn btn-sm btn-primary" })
+                        </td>
+                    </tr>
+
+
+                }
+            </tbody>
+        </table>
+
+    }
+
+    @if (Model.WikiPost.guides != null)
+    {
+        <table id="wikiGuidesTable" class="table table-striped table-bordered dt-responsive">
+
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Description</th>
+                    <th>View Guide</th>
+                </tr>
+            </thead>
+
+            <tbody>
                 @foreach (var guide in Model.WikiPost.guides)
                 {
-                    <a class="dropdown-item" asp-action="ViewGuide"></a>
-                    @Html.ActionLink("View Guide", "ViewGuide", "IFixit", routeValues: new { guideId = guide.guideid }, new { @class = "btn btn-sm btn-primary" })
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => guide.subject)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => guide.summary)
+                        </td>
+                        <td>
+                            @Html.ActionLink("View Guide", "ViewGuide", "IFixit", routeValues: new { guideId = guide.guideid }, new { @class = "btn btn-sm btn-primary" })
+                        </td>
+                    </tr>
+
+
                 }
-            </div>
-        }
-    </div>
+            </tbody>
+        </table>
 
-    <div class="float-child">
-        @if (Model.WikiPost.guides != null)
-        {
-            foreach (var guide in Model.WikiPost.guides)
-            {
-
-                <div class="card" style="width: 18rem;">
-                    @*<img class="card-img-top" src="@guide.image.medium" alt="Card image cap">*@
-                    <div class="card-body">
-                        <h5 class="card-title">@guide.subject</h5>
-                        <p class="card-text">@guide.summary</p>
-                        @Html.ActionLink("View Guide", "ViewGuide", "IFixit", routeValues: new { guideId = guide.guideid }, new { @class = "btn btn-sm btn-primary" })
-                        @*<a asp-action="ViewGuide" asp-controller="IFixit" asp-all-route-data="@guide.guideid" class="btn btn-primary">View Guide</a>*@
-                    </div>
-                </div>
-            }
-        }
-    </div>
+    }
 </div>
+
+<br />
+<br />
+<br />
+
+@section scripts
+    {
+    <script>
+        $('#wikiTable').dataTable({
+            "processing": true
+        });
+        $('#wikiGuidesTable').dataTable({
+            "processing": true
+        });
+    </script>
+}
