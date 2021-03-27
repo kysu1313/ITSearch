@@ -10,7 +10,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
 <form asp-controller="Services" asp-action="search" method="post">
     <div class="input-group mb-3">
         <input id="searchTerm" asp-for="NewSearch.SearchText" asp-action="search" asp-controller="Services"
@@ -21,10 +20,20 @@
     </div>
 </form>
 
+<form asp-controller="Services" asp-action="GetSN" method="post">
+    <div class="input-group mb-3">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">TEST</button>
+        </div>
+    </div>
+</form>
+
+@*<button asp-action="GetSN" asp-controller="Services" method="post" type="submit">TEST</button>*@
+
 <h3 class="badge badge-pill badge-warning">Scroll for more results</h3>
 
 
-<div class="container" style="width:90%;">
+<div class="container">
     <br />
 
 
@@ -36,7 +45,7 @@
 
 
 
-    <div style="width:48%; margin:0 auto;">
+    <div style="width:100%; margin:0 auto;">
         @if (Model.Services != null && Model.Services.Count() != 0)
         {
             <div class="alert alert-success font-weight-bold" role="alert">
@@ -316,15 +325,15 @@
     <script>
         $('#serviceTable').dataTable({
             "processing": true
-        }); 
+        });
         $('#computerTable').dataTable({
             "processing": true
-        }); 
+        });
         $('#iosTable').dataTable({
             "processing": true
-        }); 
+        });
         $('#procedureTable').dataTable({
             "processing": true
-        }); 
+        });
     </script>
 }
