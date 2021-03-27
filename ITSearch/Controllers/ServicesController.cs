@@ -15,6 +15,7 @@ using System.Data;
 using Newtonsoft.Json.Linq;
 using ITSearch.Models.ProductInfo;
 using Microsoft.AspNetCore.Authorization;
+using ITSearch.Models.SNLookup;
 
 namespace ITSearch.Controllers
 {
@@ -77,6 +78,12 @@ namespace ITSearch.Controllers
             gvm.Procedures = procedures;
 
             return View("Index", gvm);
+        }
+
+        public void GetSN()
+        {
+            DeviceID did = new DeviceID();
+            did.CheckID("F2MVLA7KJCLM");
         }
 
         [HttpPost]
