@@ -1,5 +1,6 @@
 ﻿using ITSearch.Models;
 using ITSearch.Models.ProductInfo;
+using ITSearch.Models.SNLookup;
 using ITSearch.Models.ViewModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,7 @@ namespace ITSearch.Data
         public DbSet<Computer> Computers { get; set; }
         public DbSet<IOSDevice> IOSDevices { get; set; }
         public DbSet<Procedure> Procedures { get; set; }
+        public DbSet<LastFourSN> LastFourSNs { get; set; }
 
         public DbSet<ModelNumber> ModelNumbers { get; set; }
         public DbSet<DeviceConfiguration> Configurations{ get; set; }

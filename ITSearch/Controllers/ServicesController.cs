@@ -82,8 +82,10 @@ namespace ITSearch.Controllers
 
         public void GetSN()
         {
-            DeviceID did = new DeviceID();
-            did.CheckID("F2MVLA7KJCLM");
+            //DataParser dpar = new DataParser(_context);
+            //dpar.ParseSNData();
+            //DeviceID did = new DeviceID();
+            //did.CheckID("F2MVLA7KJCLM");
         }
 
         [HttpPost]
