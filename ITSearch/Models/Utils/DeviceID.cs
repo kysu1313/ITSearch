@@ -76,11 +76,6 @@ namespace ITSearch.Models.SNLookup
 
         }
 
-        public void PopulateSnDb()
-        {
-
-        }
-
         private SNLookupResponse ParseGuideJson(JObject job)
         {
             // Prevent null values in response

@@ -1,5 +1,6 @@
 ﻿using ITSearch.Data;
 using ITSearch.Models.ProductInfo;
+using ITSearch.Models.SNLookup;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,22 @@ namespace ITSearch.Models
         public DataParser(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        public void ParseSNData()
+        {
+            JObject obj = JObject.Parse(System.IO.File.ReadAllText(@"Data/sndb.json"));
+
+            System.Diagnostics.Debug.WriteLine(obj);
+            foreach (var item in obj.SelectToken("items"))
+            {
+                LastFourSN lfsn = new LastFourSN();
+                lfsn.last4 = item.SelectToken("last4").ToString();
+                lfsn.name= item.SelectToken("name").ToString();
+                _context.LastFourSNs.Add(lfsn);
+            }
+            _context.SaveChanges();
+
         }
 
         public void ParseIOSJson()
