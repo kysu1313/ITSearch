@@ -63,6 +63,8 @@ namespace ITSearch
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseBrowserLink();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

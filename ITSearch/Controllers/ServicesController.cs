@@ -49,37 +49,38 @@ namespace ITSearch.Controllers
         [HttpPost]
         public async Task<IActionResult> search(GeneralViewModel search)
         {
+            string[] tokens = search.NewSearch.SearchText.ToLower().Split(new char[] { ' ', ',', '.', ';' });
 
             IEnumerable<Service> services = _context.Services.Search(
                 m => m.ServiceName.ToLower(), 
                 m => m.AdditionalInfo.ToLower())
-                .Containing(search.NewSearch.SearchText.ToLower());
+                .ContainingAll(tokens);
 
             IEnumerable<Procedure> procedures = _context.Procedures.Search(
                 m => m.Name.ToLower(),
                 m => m.Action.ToLower(),
                 m => m.Notes.ToLower())
-                .Containing(search.NewSearch.SearchText.ToLower());
+                .ContainingAll(tokens);
 
             IEnumerable<Computer> computers = _context.Computers.Search(
                 m => m.Description.ToLower(),
                 m => m.Model.ToLower(),
                 m => m.ModelIdentifier.ToLower(),
                 m => m.AdditionalInfo.ToLower())
-                .Containing(search.NewSearch.SearchText.ToLower());
+                .ContainingAll(tokens);
 
             IEnumerable<IOSDevice> iOSDevices = _context.IOSDevices.Search(
                 m => m.DeviceName.ToLower(),
                 m => m.DeviceModel.ToLower(),
                 m => m.DeviceConfiguration.Configuration.ToLower(),
                 m => m.DeviceModelNumber.Model.ToLower())
-                .Containing(search.NewSearch.SearchText.ToLower());
+                .ContainingAll(tokens);
 
             IEnumerable<Product> products = _context.Products.Search(
                 m => m.sku.ToLower(),
                 m => m.Description.ToLower(),
                 m => m.ProductPrice.ToString())
-                .Containing(search.NewSearch.SearchText.ToLower());
+                .ContainingAll(tokens);
 
 
 
