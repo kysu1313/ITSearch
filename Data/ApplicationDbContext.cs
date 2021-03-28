@@ -17,8 +17,7 @@ namespace ITSearch.Data
         {
         }
 
-        public DbSet<ApplicationUser> applicationUsers{ get; set; }
-        public DbSet<Item> Items { get; set; }
+        public DbSet<ApplicationUser> applicationUsers{ get; set; } 
         public DbSet<Product> Products { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Search> Searches { get; set; }
