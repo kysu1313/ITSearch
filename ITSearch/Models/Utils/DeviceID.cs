@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Xml;
+
 
 namespace ITSearch.Models.SNLookup
 {
@@ -16,6 +18,19 @@ namespace ITSearch.Models.SNLookup
 
 
         //  F2MVLA7KJCLM
+        //  C02VR01VHV2G
+
+
+
+
+
+
+        // LOOK AT REFIT package for api calls !!!!!!!!
+
+
+
+
+
 
         public DeviceID() { }
 
@@ -47,12 +62,45 @@ namespace ITSearch.Models.SNLookup
             }
         }
 
-        public void AppleSnLookup(string sn)
+        public string AppleSNLookup(string sn)
         {
             // This isn't the best method either.
             // Takes the last 4 of the sn and check against apples website. 
             // Problem is that it's not 100% consistent. SN schemes have changed over the years.
 
+            try
+            {
+                using (WebClient webClient = new WebClient())
+                {
+                    string lastFour = sn.Substring(sn.Length - 4);
+                    string xmlStr = webClient.DownloadString(APPLE_URL + lastFour);
+                    XmlDocument xml = new XmlDocument();
+                    xml.LoadXml(xmlStr); // your XML String
+                    XmlNodeList xlst = xml.GetElementsByTagName("configCode");
+
+                    string result = "";
+
+                    if (xlst != null)
+                    {
+                        result = xlst.Item(0).InnerText;
+                    }
+
+                    System.Diagnostics.Debug.WriteLine(result);
+
+
+                    return result;
+                }
+            }
+            catch (WebException ex)
+            {
+                throw;
+            }
+        }
+
+
+        public void DeviceIdLookup(string sn)
+        {
+            
             try
             {
                 using (WebClient webClient = new WebClient())

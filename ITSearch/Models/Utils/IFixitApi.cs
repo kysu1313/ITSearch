@@ -148,6 +148,9 @@ namespace ITSearch.Models.IFixit
             return ri;
         }
 
+        /**
+         * Call iFixit wiki api
+         */
         public IFixitWikiPost MakeWikiCall(string query)
         {
             try
@@ -169,6 +172,9 @@ namespace ITSearch.Models.IFixit
             }
         }
 
+        /**
+         * Parse iFixit api call as object
+         */
         private IFixitWikiPost ParseWikiJson(JObject job)
         {
             // Prevent null values in response

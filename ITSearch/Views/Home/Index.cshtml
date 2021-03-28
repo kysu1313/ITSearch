@@ -20,6 +20,16 @@
             </div>
         </form>
 
+        <form asp-controller="Services" asp-action="GetSN" method="post" style="max-width: 40%; text-align:center; margin: auto;">
+            <div class="input-group mb-3">
+                <input asp-for="NewSearch.SearchText" asp-action="GetSN" asp-controller="Services"
+                       type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="serial number:">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
 
         <br />
         <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Login Here</a>
