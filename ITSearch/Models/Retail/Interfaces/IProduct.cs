@@ -2,8 +2,11 @@
 {
     public interface IProduct
     {
+        string Description { get; set; }
+        bool Inventoried { get; set; }
+        int Inventory { get; set; }
         int ProductId { get; set; }
-        string ProductName { get; set; }
         double ProductPrice { get; set; }
+        string sku { get; set; }
     }
 }
