@@ -10,6 +10,8 @@ namespace ITSearch.Models.ViewModels
     public class GeneralViewModel
     {
 
+        public string DeviceName { get; set; }
+
         public IEnumerable<Procedure> Procedures { get; set; }
         public Procedure Procedure { get; set; }
         public IEnumerable<Computer> Computers { get; set; }
@@ -20,6 +22,9 @@ namespace ITSearch.Models.ViewModels
         public ModelNumber ModelNumber { get; set; }
         public IEnumerable<Service> Services { get; set; }
         public Service Service { get; set; }
+
+        public IEnumerable<Product> Products { get; set; }
+        public Product Product { get; set; }
 
 
         public IFixitSearchResult IFixitSearchResult { get; set; }

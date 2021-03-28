@@ -40,6 +40,12 @@ namespace ITSearch.Controllers
             return View(svm);
         }
 
+        /// <summary>
+        /// This runs a search in each table shown below.
+        /// It looks for similar keywords in various fields in the object.
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> search(GeneralViewModel search)
         {
@@ -69,6 +75,12 @@ namespace ITSearch.Controllers
                 m => m.DeviceModelNumber.Model.ToLower())
                 .Containing(search.NewSearch.SearchText.ToLower());
 
+            IEnumerable<Product> products = _context.Products.Search(
+                m => m.sku.ToLower(),
+                m => m.Description.ToLower(),
+                m => m.ProductPrice.ToString())
+                .Containing(search.NewSearch.SearchText.ToLower());
+
 
 
             GeneralViewModel gvm = new GeneralViewModel();
@@ -76,18 +88,83 @@ namespace ITSearch.Controllers
             gvm.Computers = computers;
             gvm.IOSDevices = iOSDevices;
             gvm.Procedures = procedures;
+            gvm.Products = products;
 
             return View("Index", gvm);
         }
 
-        public void GetSN()
+        /// <summary>
+        /// Takes a serial number in and first checks the stored list of 
+        /// known serial numbers from the database. If it is not found,
+        /// it makes a call to apples web api using the DeviceID class.
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
+        public IActionResult GetSN(GeneralViewModel search)
         {
-            //DataParser dpar = new DataParser(_context);
-            //dpar.ParseSNData();
-            //DeviceID did = new DeviceID();
-            //did.CheckID("F2MVLA7KJCLM");
+            string str = search.NewSearch.SearchText.ToString();
+            string lastFour = search.NewSearch.SearchText.ToString().Substring(str.Length - 4);
+            LastFourSN lfsn = _context.LastFourSNs.FirstOrDefault(m => m.last4 == lastFour);
+
+            GeneralViewModel gvm = new GeneralViewModel();
+
+            if (lfsn == null)
+            {
+                DeviceID dId = new DeviceID();
+                string itemName = dId.AppleSNLookup(str);
+                gvm.DeviceName = itemName;
+            } 
+            else
+            {
+                gvm.DeviceName = lfsn.name;
+            }
+
+            
+
+            Computer computer = _context.Computers.Search(
+                m => m.Model.ToLower(),
+                m => m.Description.ToLower(),
+                m => m.ModelIdentifier.ToLower())
+                .Containing(gvm.DeviceName.ToLower()).FirstOrDefault();
+
+            IOSDevice iOSDevice = _context.IOSDevices.Search(
+                m => m.DeviceName.ToLower(),
+                m => m.DeviceModel.ToLower(),
+                m => m.DeviceConfiguration.Configuration.ToLower(),
+                m => m.DeviceModelNumber.Model.ToLower())
+                .Containing(gvm.DeviceName.ToLower()).FirstOrDefault();
+
+
+            if (computer != null)
+            {
+                gvm.Computer = computer;
+                return RedirectToAction("details", "Computers", new { id = computer.Id });
+            }
+            if (iOSDevice != null)
+            {
+                gvm.IOSDevice = iOSDevice;
+                return RedirectToAction("details", "IOSDevices", new { id = iOSDevice.Id});
+            }
+            else
+            {
+                return View("Index", gvm);
+            }
+
         }
 
+        public void AddProducts()
+        {
+            DataParser dpar = new DataParser(_context);
+            dpar.ParseProductCSV();
+        }
+
+        /// <summary>
+        /// 
+        /// *** Still in progress ***
+        /// 
+        /// </summary>
+        /// <param name="prefix"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult AutoComplete(string prefix)
         {
@@ -128,8 +205,6 @@ namespace ITSearch.Controllers
         }
 
         // POST: Services/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ServiceId,ServiceName,ServicePrice,AdditionalInfo")] Service service)
@@ -160,8 +235,6 @@ namespace ITSearch.Controllers
         }
 
         // POST: Services/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ServiceId,ServiceName,ServicePrice,AdditionalInfo")] Service service)
