@@ -12,8 +12,8 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container" style="width: 80%; text-align: center; margin: auto;">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ITSearch</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -22,25 +22,28 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="Index">Search</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Services" asp-action="Index">Search</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Computers" asp-action="Index">Computers</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="IOSDevices" asp-action="Index">IOS Devices</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Computers" asp-action="Index">Computers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Procedures" asp-action="Index">Procedures</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="IOSDevices" asp-action="Index">IOS Devices</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="IFixit" asp-action="Index">iFixit Guides</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Procedures" asp-action="Index">Procedures</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="IFixit" asp-action="Index">iFixit Guides</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -48,7 +51,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container" id="bootstrapOverride">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
