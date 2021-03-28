@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ITSearch.Models
 {
-    public class Computer
+    public class Computer : IComputer
     {
         public int Id { get; set; }
 

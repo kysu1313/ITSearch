@@ -61,6 +61,9 @@ namespace ITSearch.Controllers
 
             var computer = await _context.Computers
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+
+
             if (computer == null)
             {
                 return NotFound();

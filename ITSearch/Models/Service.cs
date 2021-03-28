@@ -19,6 +19,5 @@ namespace ITSearch.Models
         [Display(Name = "Related Services")]
         public IEnumerable<Service> RelatedServices { get; set; }
         public IEnumerable<Product> RelatedProducts { get; set; }
-        public IEnumerable<Item> RelatedItems { get; set; }
     }
 }
