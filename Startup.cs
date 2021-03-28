@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,10 @@ namespace ITSearch
 {
     public class Startup
     {
+
+        private string _connection = null;
+        public string _connStr;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,9 +33,15 @@ namespace ITSearch
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var builder = new SqlConnectionStringBuilder(
+            Configuration.GetConnectionString("DefaultConnection"));
+            builder.Password = Configuration["DbPassword"];
+            _connection = builder.ConnectionString;
+            this._connStr = _connection;
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(_connStr));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
