@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITSearch.Models
 {
-    public class Search
+    public class Search : ISearch
     {
         [Key]
         public int SearchId { get; set; }
