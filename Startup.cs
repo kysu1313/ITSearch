@@ -21,7 +21,7 @@ namespace ITSearch
     {
 
         private string _connection = null;
-        public string _connStr;
+        public string connStr;
 
         public Startup(IConfiguration configuration)
         {
@@ -34,14 +34,15 @@ namespace ITSearch
         public void ConfigureServices(IServiceCollection services)
         {
 
-            var builder = new SqlConnectionStringBuilder(
-            Configuration.GetConnectionString("DefaultConnection"));
-            builder.Password = Configuration["DbPassword"];
-            _connection = builder.ConnectionString;
-            this._connStr = _connection;
+            //var builder = new SqlConnectionStringBuilder(
+            //Configuration.GetConnectionString("DefaultConnection"));
+            //builder.Password = Configuration["DbPassword"];
+            //_connection = builder.ConnectionString;
+            //this.connStr = _connection;
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(_connStr));
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
