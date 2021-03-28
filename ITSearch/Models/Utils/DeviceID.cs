@@ -14,7 +14,6 @@ namespace ITSearch.Models.SNLookup
     {
         private const string URL = "https://afit-deviceidentifier-v1.p.rapidapi.com/v1/apple-serials/";
         private const string APPLE_URL = "https://support-sp.apple.com/sp/product?cc=";
-        private string UrlParams = "";
 
 
         //  F2MVLA7KJCLM

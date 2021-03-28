@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITSearch.Models.ProductInfo
 {
-    public class DeviceConfiguration
+    public class DeviceConfiguration : IDeviceConfiguration
     {
         public DeviceConfiguration() { }
 
