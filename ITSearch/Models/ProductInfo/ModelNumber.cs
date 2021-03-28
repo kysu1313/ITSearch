@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITSearch.Models.ProductInfo
 {
-    public class ModelNumber
+    public class ModelNumber : IModelNumber
     {
         public ModelNumber() { }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITSearch.Models
 {
-    public class Procedure
+    public class Procedure : IProcedure
     {
         public int Id { get; set; }
         public string Name { get; set; }

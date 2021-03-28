@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ITSearch.Models
 {
-    public class IOSDevice
+    public class IOSDevice : IIOSDevice
     {
         public int Id { get; set; }
         [Display(Name = "Name")]
