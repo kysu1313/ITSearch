@@ -1,14 +1,30 @@
-﻿@model ITSearch.Models.Computer
+﻿@model ITSearch.Models.ViewModels.GeneralViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<style>
 
+@*Spacing Example*@
+@*https://stackoverflow.com/questions/18738712/how-to-add-spacing-between-columns*@
+
+
+<style>
 
     .container {
         max-width: 2000px !important;
+    }
+
+    .top-buffer {
+        margin-top: 15px;
+    }
+
+    .side-buffer {
+        margin-right: 20px;
+    }
+
+    .longVerticalStop {
+        max-height: 500px;
     }
 
     #bootstrapOverride {
@@ -18,63 +34,215 @@
 
     #gridHalfBlock {
         background-color: #ECEFF8;
-        @*margin: 20px;*@
-        @*padding: 100px;*@
-        @*padding-right: 20px;*@
-        @*width: 100px;*@
-        @*width: 40%;*@
+        padding: 20px;
     }
-
 </style>
 
 
-<div class="container" >
+<div class="container">
     <h1>Details</h1>
-    <div class="row">
-        <div id="gridHalfBlock" class="col-md-6">
-            <div>
-                <h4>Computer</h4>
-                <hr />
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Description)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Description)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Model)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Model)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Year)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Year)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.ModelIdentifier)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.ModelIdentifier)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Size)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Size)
-                    </dd>
-                </dl>
+    <div class="row top-buffer">
+        <div class="col-md-6">
+            <div id="gridHalfBlock" class="col-md-12">
+                <div>
+                    <h4>Computer</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Computer.Description)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Computer.Description)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Computer.Model)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Computer.Model)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Computer.Year)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Computer.Year)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Computer.ModelIdentifier)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Computer.ModelIdentifier)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Computer.Size)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Computer.Size)
+                        </dd>
+                    </dl>
+                </div>
             </div>
         </div>
-        <div id="gridHalfBlock" class="col-md-5 ml-auto">
-            <a>TESTESTSETEs</a>
+
+        <div class="col-md-6 ml-auto">
+            <div id="gridHalfBlock" class="col-md-12">
+                <h4>Guides</h4>
+                <p>Note: Some of these may not be relevant :(</p>
+                @if (Model.IFixitGuides is not null)
+                {
+                    if (Model.IFixitGuides.Count() > 0)
+                    {
+                        <table id="ifixitWikiTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IFixitJsonResult.title)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IFixitJsonResult.subject)
+                                    </th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.IFixitGuides)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => item.title)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.subject)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("View Guide", "ViewGuide", "IFixit", new { item.guideid }, new { @class = "btn btn-sm btn-primary" })
+                                            <a class="btn btn-sm btn-warning" href="@item.url">View On iFixit</a>
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    }
+                }
+            </div>
+
         </div>
     </div>
 
 
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    @*========================================================
+                ADD Products info here!!!
+    ========================================================*@
+
+    <div class="row top-buffer">
+
+        <div class="col-md-6 ml-auto">
+            <div id="gridHalfBlock" class="col-md-12 ml-auto">
+                @if (Model.Products != null)
+                {
+                    if (Model.IFixitWikis.Count() > 0)
+                    {
+                        <table id="productTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Product.Description)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Product.Inventoried)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Product.ProductPrice)
+                                    </th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Products)
+                                {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Description)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Inventoried)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.ProductPrice)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("View Product", "details", "Products", new { item.ProductId }, new { @class = "btn btn-sm btn-success" })
+                                    </td>
+                                </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="col-md-6 ml-auto col-md-offset-2">
+            <div id="gridHalfBlock" class="col-md-12">
+                <h4>Wikis</h4>
+                @if (Model.IFixitWikis is not null)
+                {
+                    if (Model.IFixitWikis.Count() > 0)
+                    {
+                        <table id="ifixitGuideTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IFixitJsonResult.title)
+                                    </th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.IFixitWikis)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => item.title)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("View Wiki", "ViewWiki", "IFixit", new { item.wikiid }, new { @class = "btn btn-sm btn-success" })
+                                            <a class="btn btn-sm btn-warning" href="@item.url">View On iFixit</a>
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <a asp-action="Edit" asp-route-id="@Model.Computer.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+@section scripts
+    {
+    <script>
+        $('#ifixitWikiTable').dataTable({
+            "processing": true
+        });
+        $('#ifixitGuideTable').dataTable({
+            "processing": true
+        });
+        $('#productTable').dataTable({
+            "processing": true
+        });
+    </script>
+}

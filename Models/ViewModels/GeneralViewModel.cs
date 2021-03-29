@@ -29,6 +29,10 @@ namespace ITSearch.Models.ViewModels
 
         public IFixitSearchResult IFixitSearchResult { get; set; }
         public IFixitJsonResult IFixitJsonResult { get; set; }
+        public IFixitGuide IFixitGuide { get; set; }
+        public IFixitWiki IFixitWiki { get; set; }
+        public IEnumerable<IFixitJsonResult> IFixitGuides { get; set; }
+        public IEnumerable<IFixitJsonResult> IFixitWikis { get; set; }
         public JsonImage JsonImage { get; set; }
 
         public Search NewSearch { get; set; }
