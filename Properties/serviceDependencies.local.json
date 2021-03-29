@@ -1,14 +1,25 @@
 {
   "dependencies": {
-    "mssql1": {
-      "type": "mssql.local",
-      "connectionId": "DefaultConnection"
-    },
     "secrets1": {
+      "type": "secrets.user"
+    },
+    "mssql1": {
+      "resourceId": null,
+      "type": "mssql.local",
+      "connectionId": "DefaultConnection",
+      "secretStore": "AzureKeyVault"
+    },
+    "secrets2": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/ITSearchvault",
       "type": "secrets.keyVault",
       "connectionId": "VaultUri",
       "secretStore": null
+    },
+    "mssql2": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/quicksearch123/databases/QuickSearchDb",
+      "type": "mssql.azure",
+      "connectionId": "QuickSearchDB",
+      "secretStore": "AzureKeyVault"
     }
   }
 }

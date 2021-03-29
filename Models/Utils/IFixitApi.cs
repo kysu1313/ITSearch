@@ -18,9 +18,9 @@ namespace ITSearch.Models.IFixit
     public class IFixitApi
     {
         private const string URL = "https://www.ifixit.com/api/2.0/";
-        private string UrlParams = "";
-        private static HttpClient client = new HttpClient();
-        private HttpWebRequest request;
+        private string _urlParams = "";
+        private static HttpClient _client = new HttpClient();
+        private HttpWebRequest _request;
 
         /**
          * Used for auth-required calls.
@@ -28,15 +28,15 @@ namespace ITSearch.Models.IFixit
          */
         public void CreateToken()
         {
-            client.BaseAddress = new Uri(URL);
-            client.DefaultRequestHeaders.Accept.Clear();
+            _client.BaseAddress = new Uri(URL);
+            _client.DefaultRequestHeaders.Accept.Clear();
 
             // Add an Accept header for JSON format.
-            client.DefaultRequestHeaders.Accept
+            _client.DefaultRequestHeaders.Accept
                   .Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
 
 
-            HttpResponseMessage response = client.GetAsync("/users/token").Result;
+            HttpResponseMessage response = _client.GetAsync("/users/token").Result;
 
             string token = response.Content.ReadAsStringAsync().Result;
 
