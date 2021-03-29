@@ -10,6 +10,8 @@ using ITSearch.Models;
 using ITSearch.Models.ViewModels;
 using NinjaNye.SearchExtensions;
 using Microsoft.AspNetCore.Authorization;
+using ITSearch.Models.IFixit;
+using System.Web;
 
 namespace ITSearch.Controllers
 {
@@ -59,17 +61,52 @@ namespace ITSearch.Controllers
                 return NotFound();
             }
 
+            GeneralViewModel gvm = new GeneralViewModel();
+
             var computer = await _context.Computers
                 .FirstOrDefaultAsync(m => m.Id == id);
-
-
 
             if (computer == null)
             {
                 return NotFound();
             }
 
-            return View(computer);
+            // Call iFixit api from computer name tokens
+            IFixitApi ifa = new IFixitApi();
+            string search = HttpUtility.UrlEncode(computer.Description);
+            IFixitSearchResult data = ifa.MakeCall("search/" + search + "?pretty");
+            string[] tokens = computer.Description.ToLower().Split(new char[] { ' ', ',', '.', ';', '(', ')', '-' });
+
+            if (data != null)
+            {
+
+                IEnumerable<IFixitJsonResult> guides = data.results.Search(
+                m => m.dataType == "guide" ? m.title.ToLower() : "")
+                .Containing(tokens);
+
+                IEnumerable<IFixitJsonResult> wikis = data.results.Search(
+                    m => m.dataType == "wiki" ? m.title.ToLower() : "")
+                    .Containing(tokens);
+
+                gvm.IFixitGuides = guides;
+                gvm.IFixitWikis = wikis;
+            }
+
+
+            IEnumerable<Product> productstt = _context.Products.ToList();
+
+            IEnumerable<Product> products = productstt.Search(
+                m => m.Description.ToLower())
+                .ContainingAll(tokens);
+
+            if (products != null)
+            {
+                gvm.Products = products;
+            }
+
+            gvm.Computer = computer;
+
+            return View(gvm);
         }
 
         // GET: Computers/Create
