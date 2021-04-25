@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ITSearch.Data;
 using ITSearch.Models;
+using NinjaNye.SearchExtensions;
+using ITSearch.Models.ViewModels;
 
 namespace ITSearch.Controllers
 {
@@ -22,7 +24,28 @@ namespace ITSearch.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Products.ToListAsync());
+            GeneralViewModel gvm = new GeneralViewModel();
+            gvm.Products = await _context.Products.ToListAsync();
+            return View(gvm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> search(GeneralViewModel search)
+        {
+            string[] tokens = search.NewSearch.SearchText.ToLower().Split(new char[] { ' ', ',', '.', ';' });
+
+            IEnumerable<Product> products = _context.Products.Search(
+                m => m.sku.ToLower(),
+                m => m.Description.ToLower(),
+                m => m.ProductPrice.ToString())
+                .ContainingAll(tokens);
+
+
+
+            GeneralViewModel gvm = new GeneralViewModel();
+            gvm.Products = products;
+
+            return View("Index", gvm);
         }
 
         // GET: Products/Details/5

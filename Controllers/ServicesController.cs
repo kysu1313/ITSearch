@@ -33,9 +33,17 @@ namespace ITSearch.Controllers
         public async Task<IActionResult> Index()
         {
             List<Service> services = await _context.Services.ToListAsync();
+            List<Product> products = await _context.Products.ToListAsync();
+            List<Procedure> procedures = await _context.Procedures.ToListAsync();
+            List<Computer> computers = await _context.Computers.ToListAsync();
+            List<IOSDevice> iOSDevices = await _context.IOSDevices.ToListAsync();
 
             GeneralViewModel svm = new GeneralViewModel();
             svm.Services = services;
+            svm.Products = products;
+            svm.Procedures = procedures;
+            svm.Computers = computers;
+            svm.IOSDevices = iOSDevices;
 
             return View(svm);
         }
