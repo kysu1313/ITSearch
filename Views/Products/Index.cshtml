@@ -1,59 +1,73 @@
-﻿@model IEnumerable<ITSearch.Models.Product>
+﻿@model ITSearch.Models.ViewModels.GeneralViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Products</h1>
+
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" id="productTable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.sku)
+                @Html.DisplayNameFor(model => model.Product.sku)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Product.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductPrice)
+                @Html.DisplayNameFor(model => model.Product.ProductPrice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Inventoried)
+                @Html.DisplayNameFor(model => model.Product.Inventoried)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Inventory)
+                @Html.DisplayNameFor(model => model.Product.Inventory)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.sku)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inventoried)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inventory)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Products)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sku)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Inventoried)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Inventory)
+                </td>
+                <td class="btn-group">
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-controller="Products" asp-route-id="@item.ProductId">Details</a>
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="Products" asp-route-id="@item.ProductId">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-controller="Products" asp-route-id="@item.ProductId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<br />
+<br />
+<br />
+
+@section scripts
+    {
+    <script>
+        $('#productTable').dataTable({
+            "processing": true
+        });
+    </script>
+}

@@ -12,30 +12,30 @@ namespace ITSearch.Models.ViewModels
 
         public string DeviceName { get; set; }
 
-        public IEnumerable<Procedure> Procedures { get; set; }
-        public Procedure Procedure { get; set; }
-        public IEnumerable<Computer> Computers { get; set; }
-        public Computer Computer { get; set; }
-        public IEnumerable<IOSDevice> IOSDevices { get; set; }
-        public IOSDevice IOSDevice { get; set; }
-        public IEnumerable<ModelNumber> ModelNumbers { get; set; }
-        public ModelNumber ModelNumber { get; set; }
-        public IEnumerable<Service> Services { get; set; }
-        public Service Service { get; set; }
+        public virtual IEnumerable<Procedure> Procedures { get; set; }
+        public virtual Procedure Procedure { get; set; }
+        public virtual IEnumerable<Computer> Computers { get; set; }
+        public virtual Computer Computer { get; set; }
+        public virtual IEnumerable<IOSDevice> IOSDevices { get; set; }
+        public virtual IOSDevice IOSDevice { get; set; }
+        public virtual IEnumerable<ModelNumber> ModelNumbers { get; set; }
+        public virtual ModelNumber ModelNumber { get; set; }
+        public virtual IEnumerable<Service> Services { get; set; }
+        public virtual Service Service { get; set; }
 
-        public IEnumerable<Product> Products { get; set; }
-        public Product Product { get; set; }
+        public virtual IEnumerable<Product> Products { get; set; }
+        public virtual Product Product { get; set; }
 
 
-        public IFixitSearchResult IFixitSearchResult { get; set; }
-        public IFixitJsonResult IFixitJsonResult { get; set; }
-        public IFixitGuide IFixitGuide { get; set; }
-        public IFixitWiki IFixitWiki { get; set; }
-        public IEnumerable<IFixitJsonResult> IFixitGuides { get; set; }
-        public IEnumerable<IFixitJsonResult> IFixitWikis { get; set; }
-        public JsonImage JsonImage { get; set; }
+        public virtual IFixitSearchResult IFixitSearchResult { get; set; }
+        public virtual IFixitJsonResult IFixitJsonResult { get; set; }
+        public virtual IFixitGuide IFixitGuide { get; set; }
+        public virtual IFixitWiki IFixitWiki { get; set; }
+        public virtual IEnumerable<IFixitJsonResult> IFixitGuides { get; set; }
+        public virtual IEnumerable<IFixitJsonResult> IFixitWikis { get; set; }
+        public virtual JsonImage JsonImage { get; set; }
 
-        public Search NewSearch { get; set; }
+        public virtual Search NewSearch { get; set; }
 
     }
 
