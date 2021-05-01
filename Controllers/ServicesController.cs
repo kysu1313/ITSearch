@@ -59,45 +59,65 @@ namespace ITSearch.Controllers
         {
             string[] tokens = search.NewSearch.SearchText.ToLower().Split(new char[] { ' ', ',', '.', ';' });
 
-            IEnumerable<Service> services = _context.Services.Search(
-                m => m.ServiceName.ToLower(), 
-                m => m.AdditionalInfo.ToLower())
-                .ContainingAll(tokens);
-
-            IEnumerable<Procedure> procedures = _context.Procedures.Search(
-                m => m.Name.ToLower(),
-                m => m.Action.ToLower(),
-                m => m.Notes.ToLower())
-                .ContainingAll(tokens);
-
-            IEnumerable<Computer> computers = _context.Computers.Search(
-                m => m.Description.ToLower(),
-                m => m.Model.ToLower(),
-                m => m.ModelIdentifier.ToLower(),
-                m => m.AdditionalInfo.ToLower())
-                .ContainingAll(tokens);
-
-            IEnumerable<IOSDevice> iOSDevices = _context.IOSDevices.Search(
-                m => m.DeviceName.ToLower(),
-                m => m.DeviceModel.ToLower(),
-                m => m.DeviceConfiguration.Configuration.ToLower(),
-                m => m.DeviceModelNumber.Model.ToLower())
-                .ContainingAll(tokens);
-
-            IEnumerable<Product> products = _context.Products.Search(
-                m => m.sku.ToLower(),
-                m => m.Description.ToLower(),
-                m => m.ProductPrice.ToString())
-                .ContainingAll(tokens);
-
-
-
             GeneralViewModel gvm = new GeneralViewModel();
-            gvm.Services = services;
-            gvm.Computers = computers;
-            gvm.IOSDevices = iOSDevices;
-            gvm.Procedures = procedures;
-            gvm.Products = products;
+
+            if (search.ViewServices)
+            {
+                IEnumerable<Service> services = _context.Services.Search(
+                    m => m.ServiceName.ToLower(), 
+                    m => m.AdditionalInfo.ToLower())
+                    .ContainingAll(tokens);
+                gvm.Services = services;
+            }
+
+            if (search.ViewProcedures)
+            {
+                IEnumerable<Procedure> procedures = _context.Procedures.Search(
+                    m => m.Name.ToLower(),
+                    m => m.Action.ToLower(),
+                    m => m.Notes.ToLower())
+                    .ContainingAll(tokens);
+                gvm.Procedures = procedures;
+            }
+
+            if (search.ViewComputers)
+            {
+                IEnumerable<Computer> computers = _context.Computers.Search(
+                    m => m.Description.ToLower(),
+                    m => m.Model.ToLower(),
+                    m => m.ModelIdentifier.ToLower(),
+                    m => m.AdditionalInfo.ToLower())
+                    .ContainingAll(tokens);
+                gvm.Computers = computers;
+            }
+
+            if (search.ViewIOSDevices)
+            {
+                IEnumerable<IOSDevice> iOSDevices = _context.IOSDevices.Search(
+                    m => m.DeviceName.ToLower(),
+                    m => m.DeviceModel.ToLower(),
+                    m => m.DeviceConfiguration.Configuration.ToLower(),
+                    m => m.DeviceModelNumber.Model.ToLower())
+                    .ContainingAll(tokens);
+                gvm.IOSDevices = iOSDevices;
+            }
+
+            if (search.ViewProducts)
+            {
+                IEnumerable<Product> products = _context.Products.Search(
+                    m => m.sku.ToLower(),
+                    m => m.Description.ToLower(),
+                    m => m.ProductPrice.ToString())
+                    .ContainingAll(tokens);
+                gvm.Products = products;
+            }
+
+            gvm.ViewServices = search.ViewServices;
+            gvm.ViewComputers = search.ViewComputers;
+            gvm.ViewIOSDevices = search.ViewIOSDevices;
+            gvm.ViewProcedures = search.ViewProcedures;
+            gvm.ViewProducts = search.ViewProducts;
+            
 
             return View("Index", gvm);
         }
