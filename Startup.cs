@@ -34,14 +34,14 @@ namespace ITSearch
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //var builder = new SqlConnectionStringBuilder(
-            //Configuration.GetConnectionString("DefaultConnection"));
-            //builder.Password = Configuration["DbPassword"];
-            //_connection = builder.ConnectionString;
-            //this.connStr = _connection;
+            var builder = new SqlConnectionStringBuilder(
+            Configuration.GetConnectionString("DefaultConnection"));
+            builder.Password = Configuration["DbPassword"];
+            _connection = builder.ConnectionString;
+            this.connStr = _connection;
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //this.connStr 
+                options.UseSqlServer(this.connStr)); //this.connStr Configuration.GetConnectionString("DefaultConnection")
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
