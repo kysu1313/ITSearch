@@ -37,6 +37,12 @@ namespace ITSearch.Models.ViewModels
 
         public virtual Search NewSearch { get; set; }
 
+        public bool ViewServices { get; set; } = true;
+        public bool ViewProducts { get; set; } = true;
+        public bool ViewProcedures { get; set; } = true;
+        public bool ViewComputers { get; set; }  = true;
+        public bool ViewIOSDevices { get; set; } = true;
+
     }
 
 }
