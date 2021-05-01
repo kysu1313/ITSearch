@@ -18,19 +18,31 @@
             <button class="btn btn-outline-secondary" type="submit">Search</button>
         </div>
     </div>
+    <div class="btn-toolbar">
+        <h3 class="badge badge-pill badge-danger check-box-line">Default search all categories</h3>
+        @*@Html.CheckBoxFor(model => model.ViewServices, new { @class = "check-box-line" });*@
+        <input class="check-box-line" type="checkbox" checked="@Model.ViewServices" style="margin-left: 1em" value="@Model.ViewServices" /> Services
+        <input class="check-box-line" type="checkbox" checked="@Model.ViewProducts" style="margin-left: 1em" value="@Model.ViewProducts" /> Products
+        <input class="check-box-line" type="checkbox" checked="@Model.ViewProcedures" style="margin-left: 1em" value="@Model.ViewProcedures" /> Procedures
+        <input class="check-box-line" type="checkbox" checked="@Model.ViewComputers" style="margin-left: 1em" value="@Model.ViewComputers" /> Computers
+        <input class="check-box-line" type="checkbox" checked="@Model.ViewIOSDevices" style="margin-left: 1em" value="@Model.ViewIOSDevices" /> IOSDevices
+    </div>
 </form>
 
-<h3 class="badge badge-pill badge-warning">Scroll for more results</h3>
+
+
+
+<h3 class="badge badge-pill badge-warning check-box-line">Scroll for more results</h3>
 
 
 @*=========================================================================================================
-|                                            TEST BUTTON                                                     |
- =========================================================================================================*@
+    |                                            TEST BUTTON                                                   |
+     =========================================================================================================*@
 
 @*<a class="btn" asp-action="AddProducts" asp-controller="Services">Add Products to db</a>*@
 
 
-<div class="container">
+<div class="container-fluid">
     <br />
 
 
@@ -51,8 +63,8 @@
 
 
     @*=========================================================================================================
-    |                                            SERVICES                                                     |
-    =========================================================================================================*@
+        |                                            SERVICES                                                     |
+        =========================================================================================================*@
 
 
     <div style="width:100%; margin:0 auto;">
@@ -124,8 +136,8 @@
 
 
         @*=========================================================================================================
-        |                                            PRODUCTS                                                     |
-        =========================================================================================================*@
+            |                                            PRODUCTS                                                     |
+            =========================================================================================================*@
 
         <div style="width:100%; margin:0 auto;">
             @if (Model.Products != null && Model.Products.Count() != 0)
@@ -163,7 +175,7 @@
                         @foreach (var item in Model.Products)
                         {
                             <tr>
-                                <td> 
+                                <td>
                                     @Html.DisplayFor(modelItem => item.sku)
                                 </td>
                                 <td>
@@ -206,8 +218,8 @@
 
 
             @*=========================================================================================================
-            |                                            PROCEDURES                                                     |
-            =========================================================================================================*@
+                |                                            PROCEDURES                                                     |
+                =========================================================================================================*@
 
             @if (Model.Procedures != null && Model.Procedures.Count() != 0)
             {
@@ -354,8 +366,8 @@
 
 
             @*=========================================================================================================
-            |                                            IOS DEVICES                                                     |
-             =========================================================================================================*@
+                |                                            IOS DEVICES                                                     |
+                 =========================================================================================================*@
 
 
             @if (Model.IOSDevices != null && Model.IOSDevices.Count() != 0)
